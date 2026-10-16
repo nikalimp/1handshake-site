@@ -8,3 +8,4 @@
 |---|---|---|---|---|---|---|---|
 | v0.1 | 2026-10-16 | Первая версия | — | — | — | — | — |
 | v0.2 | 2026-10-16 | Юр. страницы на сайте: /privacy и /terms (тексты Ника дословно из 1handshake/Legal), подвал: Privacy Policy, Terms of Service, hello@1handshake.com; блок «why we ask for google» на главной (проверка Google OAuth); адреса сайта без завершающего слэша | Ник | 1 | да | P0 | Ник, 2026-10-16 |
+| v0.2.1 | 2026-10-16 | Убрана Vercel Web Analytics — Privacy Policy обещает «no analytics trackers» | Ник | 0,2 | да | P0 | Ник, 2026-10-16 |

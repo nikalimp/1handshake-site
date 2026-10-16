@@ -35,7 +35,7 @@
 ## Этап 6. Качество
 - [ ] **T20** Адаптив 360 / 768 / 1280 / 1440, обе темы, `prefers-reduced-motion`
 - [ ] **T21** Доступность и Lighthouse mobile (Perf ≥ 90, A11y ≥ 95, SEO 100) по 3 страницам
-- [ ] **T22** Vercel Analytics + событие клика `sign in`
+- [x] **T22** ~~Vercel Analytics~~ — снято: противоречит Privacy Policy (2026-10-16)
 
 ## Этап 7. Визитки и запуск
 - [ ] **T-APP** В репо app: `assetPrefix` для прода, проверка canonical визиток — *проверка:* `1handshake.com/@<handle>` на превью со стилями

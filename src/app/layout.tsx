@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/next";
 import { noindex, site } from "@/content/site";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
@@ -40,7 +39,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="main" className="flex-1">{children}</main>
         <Footer />
-        <Analytics />
       </body>
     </html>
   );

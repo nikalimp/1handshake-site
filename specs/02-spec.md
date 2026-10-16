@@ -120,7 +120,7 @@
 | Блог | `content/blog/*.md` + frontmatter (title, description, date, updated) | — | контент-завод после запуска |
 | Roadmap | `src/content/roadmap.ts` | — | синхронизация с BACKLOG вручную |
 | llms.txt / llms-full.txt | генерация из контента | — | плюс ссылка на пример визитки |
-| Аналитика | Vercel Web Analytics (без cookies → без баннера); событие — клик `sign in` | Vercel | Ник, 2026-10-16 |
+| Аналитика | нет (Privacy Policy: «no analytics trackers»); метрики — Search Console / Bing Webmaster | — | Ник, 2026-10-16 |
 | Тема | light / dark / system | localStorage | как в app |
 | Формы | нет | — | сайт ПД не собирает |
 | Выключенные функции | `site.features`: releases=false (P1), vs=false (P1) | — | |
