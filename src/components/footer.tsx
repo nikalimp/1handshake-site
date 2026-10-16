@@ -1,51 +1,39 @@
 import Link from "next/link";
-import { nav, site } from "@/content/site";
-import { services } from "@/content/services";
+import { site } from "@/content/site";
 import { Container } from "./container";
+import { LogoMark } from "./logo";
+
+const cols = [
+  { title: "product", links: [{ href: "/how-it-works/", label: "how it works" }, { href: "/roadmap/", label: "roadmap" }, { href: site.cta.href, label: "sign in" }] },
+  { title: "about", links: [{ href: "/faq/", label: "faq" }, { href: "/open-source/", label: "open source" }, ...(site.features.blog ? [{ href: "/blog/", label: "blog" }] : [])] },
+  { title: "legal", links: [{ href: site.links.privacy, label: "privacy" }, { href: site.links.terms, label: "terms" }] },
+  { title: "code", links: [{ href: site.links.github, label: "github" }, { href: "/llms.txt", label: "llms.txt" }, ...site.socials.map((s) => ({ href: s.href, label: s.label }))] },
+];
 
 export function Footer() {
-  const c = site.contacts;
   return (
-    <footer className="border-t py-12 text-sm">
-      <Container className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-        <div>
-          <p className="font-semibold">{site.name}</p>
-          <p className="mt-2 text-muted-foreground">{site.tagline}</p>
+    <footer className="border-t">
+      <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_repeat(4,1fr)]">
+        <div className="flex flex-col gap-3">
+          <Link href="/" className="flex items-center gap-2.5 text-[19px] font-extrabold tracking-[-0.02em]"><LogoMark /><span>{site.name}</span></Link>
+          <p className="max-w-[260px] text-sm text-muted-foreground">{site.tagline}</p>
         </div>
-        <div>
-          <p className="mb-2 font-medium"><Link href="/services/" className="hover:underline">Услуги</Link></p>
-          <ul className="space-y-1.5 text-muted-foreground">
-            {services.map((s) => (
-              <li key={s.slug}><Link href={`/services/${s.slug}/`} className="hover:text-foreground">{s.title}</Link></li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <p className="mb-2 font-medium">Разделы</p>
-          <ul className="space-y-1.5 text-muted-foreground">
-            {nav.map((n) => (
-              <li key={n.href}><Link href={n.href} className="hover:text-foreground">{n.label}</Link></li>
-            ))}
-            {site.socials.map((s) => (
-              <li key={s.href}><a href={s.href} target="_blank" rel="noopener me" className="hover:text-foreground">{s.label}</a></li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <p className="mb-2 font-medium">Контакты</p>
-          <ul className="space-y-1.5 text-muted-foreground">
-            {c.phone && <li><a href={`tel:${c.phone}`} className="hover:text-foreground">{c.phoneDisplay || c.phone}</a></li>}
-            {c.email && <li><a href={`mailto:${c.email}`} className="hover:text-foreground">{c.email}</a></li>}
-            {c.telegram && <li><a href={c.telegram} target="_blank" rel="noopener" className="hover:text-foreground">Telegram</a></li>}
-            {c.address.street && <li>{[c.address.city, c.address.street].filter(Boolean).join(", ")}</li>}
-            {c.hours && <li>{c.hours}</li>}
-          </ul>
-        </div>
+        {cols.map((c) => (
+          <div key={c.title} className="flex flex-col gap-2.5 text-[15px]">
+            <p className="meta text-muted-foreground">{c.title}</p>
+            {c.links.map((l) =>
+              l.href.startsWith("/") && !l.href.endsWith(".txt") ? (
+                <Link key={l.href} href={l.href} className="hover:text-brand">{l.label}</Link>
+              ) : (
+                <a key={l.href} href={l.href} className="hover:text-brand">{l.label}</a>
+              ),
+            )}
+          </div>
+        ))}
       </Container>
-      <Container className="mt-10 flex flex-col gap-1 text-xs text-muted-foreground sm:flex-row sm:flex-wrap sm:justify-between">
-        <span>© {new Date().getFullYear()} {site.legalName} · ИНН {site.legal.inn} · ОГРН {site.legal.ogrn}</span>
-        <Link href="/privacy-policy/" className="hover:text-foreground">Политика обработки персональных данных</Link>
-        {site.metaNote && <span className="w-full">{site.metaNote}</span>}
+      <Container className="meta flex flex-wrap justify-between gap-3 border-t py-6 text-muted-foreground">
+        <span>open source · agpl-3.0 · © {new Date().getFullYear()} {site.name}</span>
+        <a href={site.links.developer.href} className="hover:text-foreground">{site.links.developer.label}</a>
       </Container>
     </footer>
   );

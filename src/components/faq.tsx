@@ -1,16 +1,16 @@
-import type { Faq } from "@/content/services";
+export type Faq = { q: string; a: string };
 
-// FAQ на <details>: ответ есть в HTML и виден ботам, раскрытие работает без JavaScript.
-export function FaqList({ items }: { items: Faq[] }) {
+// FAQ на <details>: ответ есть в HTML (виден ботам), раскрытие без JavaScript.
+export function FaqList({ items, open = 0 }: { items: Faq[]; open?: number }) {
   return (
-    <div className="divide-y border-y">
-      {items.map((f) => (
-        <details key={f.q} className="group py-4">
-          <summary className="flex cursor-pointer list-none items-start justify-between gap-4 font-medium [&::-webkit-details-marker]:hidden">
-            <h3 className="text-base font-medium">{f.q}</h3>
-            <span aria-hidden="true" className="mt-0.5 text-muted-foreground transition-transform group-open:rotate-45">+</span>
+    <div className="border-t">
+      {items.map((f, i) => (
+        <details key={f.q} open={i < open} className="group border-b py-5">
+          <summary className="flex cursor-pointer list-none items-start justify-between gap-6 [&::-webkit-details-marker]:hidden">
+            <h3 className="text-[19px] font-bold leading-7">{f.q}</h3>
+            <span aria-hidden="true" className="mt-0.5 text-2xl leading-none text-muted-foreground transition-transform group-open:rotate-45">+</span>
           </summary>
-          <p className="mt-2 text-muted-foreground">{f.a}</p>
+          <p className="mt-3 max-w-[70ch] leading-7 text-muted-foreground">{f.a}</p>
         </details>
       ))}
     </div>

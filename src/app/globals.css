@@ -2,52 +2,62 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Токены бренда — из specs/03-design.md §3. Дефолт: нейтральная тема shadcn + синий акцент.
-   Серая тема без настройки под бренд = недоделка (стандарт §6). */
+/* Шрифты бренда — локально (стандарт §1.4) */
+@font-face { font-family: "Figtree"; src: url("/fonts/figtree-latin-wght-normal.woff2") format("woff2"); font-weight: 300 900; font-display: swap; }
+@font-face { font-family: "Geist Mono"; src: url("/fonts/GeistMono-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Geist Mono"; src: url("/fonts/GeistMono-Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+
+/* Токены — specs/03-design.md §3 (бренд 1handshake: paper / ink / fire). Контраст проверен там же. */
 :root {
-  --radius: 0.5rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.205 0 0);
-  --card: oklch(0.99 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.52 0 0);
-  --accent: oklch(0.965 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --border: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --brand: oklch(0.55 0.15 255);
-  --brand-bg: oklch(0.97 0.02 255);
+  --radius: 14px;
+  --background: oklch(0.9670 0.0082 91.48);   /* paper #F6F4EE */
+  --foreground: oklch(0.2098 0.0083 84.59);    /* ink #1A1814 */
+  --card: oklch(1.0000 0 0);                       /* surface #FFFFFF */
+  --primary: oklch(0.6881 0.2067 39.07);      /* fire #FF5F1F */
+  --primary-foreground: oklch(0.2098 0.0083 84.59); /* on-fire */
+  --secondary: oklch(0.9341 0.0112 89.73);    /* surface-sunk #ECE9E1 */
+  --secondary-foreground: var(--foreground);
+  --muted: var(--secondary);
+  --muted-foreground: oklch(0.4890 0.0180 76.94); /* ink-muted #665F55 */
+  --accent: oklch(0.9485 0.0290 50.62);       /* fire-soft #FFE9DD */
+  --accent-foreground: var(--foreground);
+  --border: oklch(0.8923 0.0158 86.43);       /* line #E0DBD0 */
+  --line-strong: oklch(0.6056 0.0210 83.04);   /* #888174 */
+  --node: oklch(0.8346 0.0207 84.59);          /* #CFC8BA */
+  --ring: oklch(0.2098 0.0083 84.59);          /* focus */
+  --brand: oklch(0.5179 0.1642 38.43);         /* fire-ink #B23A07 */
+  --brand-bg: var(--accent);     /* fire-soft */
+  --shadow-card: 0 1px 2px rgba(26,24,20,0.06), 0 10px 30px rgba(26,24,20,0.07);
 }
 
 .dark {
-  --background: oklch(0.17 0 0);
-  --foreground: oklch(0.93 0 0);
-  --card: oklch(0.2 0 0);
-  --primary: oklch(0.93 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.26 0 0);
-  --secondary-foreground: oklch(0.93 0 0);
-  --muted: oklch(0.25 0 0);
-  --muted-foreground: oklch(0.66 0 0);
-  --accent: oklch(0.255 0 0);
-  --accent-foreground: oklch(0.93 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --ring: oklch(0.556 0 0);
-  --brand: oklch(0.74 0.12 255);
-  --brand-bg: oklch(0.74 0.12 255 / 12%);
+  --background: oklch(0.1871 0.0043 84.59);    /* #141311 */
+  --foreground: oklch(0.9500 0.0115 84.58);    /* #F2EEE6 */
+  --card: oklch(0.2276 0.0065 78.19);          /* #1E1C19 */
+  --primary: oklch(0.7025 0.1956 40.75);       /* #FF6A2B */
+  --primary-foreground: oklch(0.2098 0.0083 84.59);
+  --secondary: oklch(0.2694 0.0133 87.57);     /* #29261F */
+  --secondary-foreground: var(--foreground);
+  --muted: var(--secondary);
+  --muted-foreground: oklch(0.7147 0.0189 81.31); /* #A9A296 */
+  --accent: oklch(0.2697 0.0498 46.45);        /* #3A1E10 */
+  --accent-foreground: var(--foreground);
+  --border: oklch(0.3189 0.0133 81.72);        /* #36322B */
+  --line-strong: oklch(0.5580 0.0214 83.03);   /* #7A7366 */
+  --node: oklch(0.4010 0.0168 78.10);          /* #4D473E */
+  --ring: var(--foreground);
+  --brand: oklch(0.7537 0.1579 45.50);         /* #FF8B52 */
+  --brand-bg: var(--accent);
+  --shadow-card: 0 1px 2px rgba(0,0,0,0.5), 0 10px 30px rgba(0,0,0,0.35);
 }
 
 @theme inline {
-  --font-sans: "Inter Variable", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: "Figtree", ui-rounded, system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --radius-sm: 8px;
+  --radius-md: var(--radius);
+  --radius-lg: 28px;
+  --radius-xl: 28px;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -60,38 +70,47 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-border: var(--border);
+  --color-line-strong: var(--line-strong);
+  --color-node: var(--node);
   --color-ring: var(--ring);
   --color-brand: var(--brand);
   --color-brand-bg: var(--brand-bg);
+  --shadow-card: var(--shadow-card);
 }
 
 @layer base {
-  * { @apply border-border outline-ring/50; }
+  * { @apply border-border; }
   html { scroll-behavior: smooth; }
-  body { @apply bg-background text-foreground; font-size: 15px; -webkit-font-smoothing: antialiased; }
-  ::selection { background: oklch(0.55 0.15 255 / 20%); }
+  body { @apply bg-background text-foreground font-sans; font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  ::selection { background: color-mix(in oklch, var(--primary) 30%, transparent); }
+  :focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
 }
 
-/* Типографика статей */
-.prose-site { font-size: 16.5px; line-height: 1.7; }
-.prose-site > * + * { margin-top: 0.85em; }
-.prose-site h2 { font-size: 1.45em; font-weight: 600; margin-top: 1.8em; line-height: 1.3; letter-spacing: -0.01em; }
-.prose-site h3 { font-size: 1.15em; font-weight: 600; margin-top: 1.4em; }
-.prose-site a { color: var(--brand); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: color-mix(in oklch, var(--brand) 35%, transparent); }
+/* Точечная сетка — единственный узор бренда (граф) */
+.dot-grid { background-image: radial-gradient(var(--border) 1.2px, transparent 1.4px); background-size: 16px 16px; }
+
+/* Моно-мета */
+.meta { font-family: var(--font-mono); font-size: 12px; line-height: 16px; letter-spacing: .02em; }
+
+/* Типографика статей — обычный регистр (decisions.md) */
+.prose-site { font-size: 17px; line-height: 1.7; }
+.prose-site > * + * { margin-top: 0.9em; }
+.prose-site h2 { font-size: 1.5em; font-weight: 800; margin-top: 1.8em; line-height: 1.25; letter-spacing: -0.02em; }
+.prose-site h3 { font-size: 1.15em; font-weight: 700; margin-top: 1.4em; }
+.prose-site a { color: var(--brand); text-decoration: underline; text-underline-offset: 3px; }
 .prose-site ul { list-style: disc; padding-left: 1.3em; }
 .prose-site ol { list-style: decimal; padding-left: 1.3em; }
 .prose-site li + li { margin-top: 0.3em; }
-.prose-site strong { font-weight: 600; }
-.prose-site code { font-family: var(--font-mono); font-size: 0.88em; background: var(--muted); padding: 0.1em 0.35em; border-radius: 4px; }
-.prose-site pre { background: var(--muted); padding: 1em; border-radius: var(--radius); overflow-x: auto; font-size: 0.85em; line-height: 1.55; }
-.prose-site pre code { background: none; padding: 0; }
+.prose-site strong { font-weight: 700; }
+.prose-site code { font-family: var(--font-mono); font-size: 0.88em; background: var(--muted); padding: 0.1em 0.35em; border-radius: 6px; }
 .prose-site table { width: 100%; border-collapse: collapse; font-size: 0.92em; display: block; overflow-x: auto; }
 .prose-site th, .prose-site td { border-bottom: 1px solid var(--border); padding: 0.55em 0.7em 0.55em 0; text-align: left; vertical-align: top; }
-.prose-site th { font-weight: 600; }
-.prose-site blockquote { border-left: 2px solid var(--brand); padding-left: 1em; color: var(--muted-foreground); }
+.prose-site blockquote { border-left: 2px solid var(--primary); padding-left: 1em; color: var(--muted-foreground); }
 
-/* Анимации — только CSS и только при prefers-reduced-motion: no-preference (стандарт §1.6) */
+/* Анимации — только opacity/transform, с учётом reduced motion (стандарт §6) */
 @media (prefers-reduced-motion: no-preference) {
-  details[open] > :not(summary) { animation: fade-in .25s ease-out; }
+  details[open] > :not(summary) { animation: fade-in .2s ease-out; }
+  .ring-spin { animation: spin 120s linear infinite; transform-origin: center; transform-box: fill-box; }
 }
 @keyframes fade-in { from { opacity: 0; translate: 0 -4px; } to { opacity: 1; translate: none; } }
+@keyframes spin { to { rotate: 360deg; } }

@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
-// Статический экспорт: папка out/ заливается на любой хостинг в РФ
-// (Timeweb Cloud, REG.RU, Yandex Object Storage). Vercel из РФ работает нестабильно.
+// Статический экспорт на Vercel (spec §1, §9). Визитки /@handle проксируются в app через vercel.json.
 const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,

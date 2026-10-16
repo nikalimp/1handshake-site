@@ -13,7 +13,6 @@
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
-import { glavred } from "./glavred.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
 const OUT = path.join(ROOT, "out");
@@ -116,61 +115,13 @@ const buildDated = entries.filter((e) => e.lastmod?.startsWith(today)).length;
 if (entries.length > 3 && buildDated / entries.length > 0.5) console.log(`  ⚠ lastmod = сегодня у ${buildDated} из ${entries.length} URL — похоже на дату сборки, ставь только реальные даты изменений`);
 if (!fs.readdirSync(path.join(ROOT, "public")).some((f) => /^[a-f0-9]{32}\.txt$/.test(f))) console.log("  ⚠ Нет ключа IndexNow — npm run indexnow:key");
 
-// 4. Блокирующее перед выкладкой
+// 4–5. Метрика, ИНН/ОГРН, политика и согласие (152-ФЗ), Главред — не применяются: Global, EN (specs/02-spec.md §9).
+// Политика и условия живут в app; проверяем, что ссылки на них есть на главной.
 const home = fs.readFileSync(path.join(OUT, "index.html"), "utf8");
-if (/mc\.yandex\.ru\/metrika/.test(home)) ok("Яндекс Метрика подключена");
-else prodFail("Яндекс Метрика не подключена — номер счётчика в site.metrikaId (src/content/site.ts)");
-for (const page of ["privacy-policy", "consent"]) {
-  if (!fs.existsSync(path.join(OUT, page, "index.html"))) prodFail(`Нет страницы /${page}/ — политика и отдельное согласие на обработку ПДн обязательны (стандарт §8)`);
+for (const u of ["app.1handshake.com/privacy", "app.1handshake.com/terms"]) {
+  if (home.includes(u)) ok(`Ссылка на ${u} есть`);
+  else prodFail(`Нет ссылки на ${u} в подвале`);
 }
-// ИНН и ОГРН — контрольные суммы ФНС: ловят КПП вместо ИНН, опечатки и перепутанные поля
-const siteTs = fs.readFileSync(path.join(ROOT, "src", "content", "site.ts"), "utf8");
-const field = (name) => (siteTs.match(new RegExp(`${name}:\\s*"([^"]*)"`)) || [])[1] ?? "";
-const digits = (v) => v.split("").map(Number);
-const innOk = (v) => {
-  const d = digits(v), w = (ws) => (ws.reduce((s, k, i) => s + k * d[i], 0) % 11) % 10;
-  if (/^\d{10}$/.test(v)) return w([2, 4, 10, 3, 5, 9, 4, 6, 8]) === d[9];
-  if (/^\d{12}$/.test(v)) return w([7, 2, 4, 10, 3, 5, 9, 4, 6, 8]) === d[10] && w([3, 7, 2, 4, 10, 3, 5, 9, 4, 6, 8]) === d[11];
-  return false;
-};
-const ogrnOk = (v) => {
-  if (/^\d{13}$/.test(v)) return Number((BigInt(v.slice(0, 12)) % 11n) % 10n) === +v[12];
-  if (/^\d{15}$/.test(v)) return Number((BigInt(v.slice(0, 14)) % 13n) % 10n) === +v[14];
-  return false;
-};
-const inn = field("inn"), ogrn = field("ogrn");
-if (/TODO/.test(inn + ogrn) || !inn || !ogrn) prodFail("Реквизиты не заполнены: legal.inn и legal.ogrn в src/content/site.ts");
-else {
-  if (!innOk(inn)) fail(`ИНН ${inn} не проходит контрольную сумму (10 цифр — ООО, 12 — ИП; 9 цифр — это КПП, не ИНН). Сверь с ЕГРЮЛ: egrul.nalog.ru`);
-  if (!ogrnOk(ogrn)) fail(`ОГРН ${ogrn} не проходит контрольную сумму (13 цифр — ООО, 15 — ОГРНИП). Сверь с ЕГРЮЛ: egrul.nalog.ru`);
-  if (innOk(inn) && ogrnOk(ogrn)) ok(`Реквизиты: ИНН ${inn} и ОГРН ${ogrn} корректны по контрольной сумме (совпадение с ЕГРЮЛ — в чеклисте запуска)`);
-}
-// Перенос: без замера «до» нельзя показать результат переезда
-if (fs.existsSync(path.join(ROOT, "specs", "00-transfer-audit.md"))) {
-  const rep = fs.existsSync(reports) ? fs.readdirSync(reports) : [];
-  if (rep.some((f) => /^geo-check-before-.*\.md$/.test(f))) ok("Перенос: geo-check «до» снят");
-  else prodFail("Перенос: нет specs/reports/geo-check-before-<дата>.md — снять со старого сайта до смены DNS: python3 scripts/geo-check.py <старый адрес> --max 50");
-  const base = path.join(reports, "baseline");
-  if (!fs.existsSync(base) || !fs.readdirSync(base).length) warn("Перенос: нет базовой линии specs/reports/baseline/ (экспорт Метрики и запросов Вебмастера) — без неё мониторинг «до / после» невозможен; записать как долг в карточку клиента");
-}
-
-// 5. Главред по страницам из sitemap
-const GLAV_OK = 7.5, GLAV_FAIL = 6.5;
-const glav = [];
-for (const { loc } of entries) {
-  const file = path.join(OUT, decodeURI(new URL(loc).pathname), "index.html");
-  if (!fs.existsSync(file)) continue;
-  const main = (fs.readFileSync(file, "utf8").match(/<main[\s\S]*?<\/main>/) || [""])[0]
-    .replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/g, " ")
-    .replace(/<\/(p|li|h[1-6]|dt|dd|td|th|summary|div)>|<br\s*\/?>/g, "\n").replace(/<[^>]+>/g, " ").replace(/&nbsp;| |⁠/g, " ");
-  const r = glavred(main);
-  if (r.words > 30 && r.score < GLAV_OK) glav.push({ p: new URL(loc).pathname, score: r.score });
-}
-const glavBad = glav.filter((g) => g.score < GLAV_FAIL);
-if (glavBad.length) prodFail(`Главред ниже ${GLAV_FAIL}: ${glavBad.map((g) => `${g.p} (${g.score})`).join(", ")} — node scripts/glavred.mjs <файл> покажет, что править`);
-const glavWarn = glav.filter((g) => g.score >= GLAV_FAIL);
-if (glavWarn.length) warn(`Главред ниже ${GLAV_OK} (цель для продающих страниц): ${glavWarn.map((g) => `${g.p} (${g.score})`).join(", ")}`);
-if (!glav.length) ok(`Главред: все страницы из sitemap — ${GLAV_OK}+`);
 
 // 6. Цвет в обход токенов
 const srcFiles = (function walk(d) {

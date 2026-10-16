@@ -7,9 +7,9 @@ export function ThemeToggle() {
     try { localStorage.setItem("theme", d ? "dark" : "light"); } catch {}
   }
   return (
-    <button onClick={toggle} aria-label="Сменить тему" className="inline-flex size-9 items-center justify-center rounded-md text-muted-foreground hover:bg-accent hover:text-foreground">
-      <Sun className="size-4 dark:hidden" />
-      <Moon className="hidden size-4 dark:block" />
+    <button onClick={toggle} aria-label="switch theme" className="inline-flex size-11 items-center justify-center rounded-full text-muted-foreground hover:bg-secondary hover:text-foreground">
+      <Sun className="size-5 dark:hidden" strokeWidth={2} />
+      <Moon className="hidden size-5 dark:block" strokeWidth={2} />
     </button>
   );
 }

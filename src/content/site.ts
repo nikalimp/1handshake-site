@@ -1,88 +1,51 @@
-// Единый источник правды о компании. Заполняется по specs/00-brief.md и specs/02-spec.md.
-// Всё, что помечено TODO(клиент), должно быть заменено фактами до запуска: `npm run check` не пропустит TODO.
-
-export type OrgType =
-  | "Organization"
-  | "LocalBusiness"
-  | "ProfessionalService"
-  | "Dentist"
-  | "MedicalClinic"
-  | "LegalService"
-  | "EducationalOrganization"
-  | "HomeAndConstructionBusiness"
-  | "Store";
+// Единый источник правды о проекте. По specs/00-brief.md (C) и specs/02-spec.md §1.
+// Специфика РФ (контакты, реквизиты, Метрика) снята — spec §9 «Исключения».
 
 export const site = {
-  url: "https://example.ru", // TODO(клиент): боевой домен без слеша на конце
-  name: "TODO(клиент): Бренд",
-  legalName: "TODO(клиент): ООО «Название»",
-  // Тип организации в Schema.org — самый точный из подходящих: https://schema.org/LocalBusiness#subtypes
-  orgType: "LocalBusiness" as OrgType,
-  title: "TODO(клиент): Бренд — услуга в городе", // title главной, до 60 символов
-  description: "TODO(клиент): описание компании для поиска и нейросетей, 120⁠–⁠160 символов, с фактами: что, где, для кого, цена или срок.",
-  // Одна фраза о компании для llms.txt и футера
-  tagline: "TODO(клиент): что делаем и для кого",
-  lang: "ru",
-  locale: "ru_RU",
-  foundingYear: 2015, // TODO(клиент)
-  areaServed: ["RU"],
+  url: "https://1handshake.com",
+  name: "1handshake",
+  orgType: "Organization" as const,
+  // title главной (40–65 символов вместе с брендом)
+  title: "1handshake — a members-only network built from real handshakes",
+  description:
+    "1handshake is a members-only network for people in tech. You join only by meeting a member in person, and every intro comes through someone you both know.",
+  tagline: "a members-only network for people in tech, built from real handshakes",
+  slogan: "in connects we trust", // decisions.md — дословно
+  lang: "en",
+  locale: "en_US",
+  foundingYear: 2026,
 
-  contacts: {
-    phone: "", // формат +7XXXXXXXXXX; пусто — блок не показывается
-    phoneDisplay: "",
-    email: "",
-    telegram: "", // https://t.me/…
-    whatsapp: "", // https://wa.me/7XXXXXXXXXX
-    address: {
-      street: "",
-      city: "",
-      region: "",
-      postalCode: "",
-      country: "RU",
-    },
-    geo: null as null | { lat: number; lng: number },
-    hours: "", // для людей: «Пн–Пт 9:00–19:00»
-    openingHours: [] as { days: string[]; opens: string; closes: string }[], // для Schema: days — Monday…Sunday
+  // Главное целевое действие — вход в приложение
+  cta: { label: "sign in", href: "https://app.1handshake.com" },
+
+  links: {
+    app: "https://app.1handshake.com",
+    github: "https://github.com/nikalimp/1handshake",
+    privacy: "https://app.1handshake.com/privacy",
+    terms: "https://app.1handshake.com/terms",
+    developer: { label: "built by @nikalimp", href: "https://nikalimp.ru" },
   },
 
-  // Главное целевое действие — на него ведут все CTA
-  cta: {
-    label: "TODO(клиент): Записаться",
-    href: "https://t.me/TODO", // TODO(клиент): ссылка на мессенджер, форму или tel:
-  },
+  sameAs: ["https://github.com/nikalimp/1handshake"],
+  socials: [] as { label: string; href: string }[], // Telegram, X — когда появятся
 
-  // Реквизиты для футера и политики ПДн (152-ФЗ)
-  legal: {
-    inn: "TODO(клиент)",
-    ogrn: "TODO(клиент)",
-    privacyEmail: "", // почта для запросов по персональным данным; пусто — берётся contacts.email
-  },
+  darkTheme: true,
 
-  // Профили бренда на внешних площадках: одинаковые название, адрес и телефон везде
-  sameAs: [] as string[],
-  socials: [] as { label: string; href: string }[], // Instagram и Facebook — с «*» в label
-  metaNote: "", // «*Meta Platforms Inc. признана экстремистской и запрещена в РФ» — если есть ссылки на Instagram/Facebook
-
-  // Лицо компании — основатель или эксперт. null, если не нужен
-  person: null as null | { name: string; jobTitle: string; description: string; sameAs: string[] },
-
-  metrikaId: 0, // номер счётчика Яндекс Метрики; 0 — счётчик не подключается (на боевом домене npm run check этого не пропустит)
-  darkTheme: true, // переключатель темы в шапке
-
-  // Функции включаются и выключаются флагами, а не удалением кода (стандарт §1.9):
-  // снятый с сайта блок остаётся в репозитории и возвращается одной строкой.
+  // Функции — флагами (стандарт §1.9)
   features: {
-    blog: true, // блог: пункт меню, /blog/, статьи в sitemap и llms.txt
+    blog: true,
+    releases: false, // P1
+    vs: false, // P1
+    card: false, // P1
   },
 };
 
-// Тестовая выкладка (стандарт §10): NOINDEX=1 при сборке закрывает сайт от индексации —
-// robots.txt «Disallow: /» и meta robots noindex на всех страницах. Боевой домен — без NOINDEX.
+// Тестовая выкладка: NOINDEX=1 закрывает сайт от индексации.
 export const noindex = process.env.NOINDEX === "1";
 
 export const nav = [
-  { href: "/services/", label: "Услуги" },
-  ...(site.features.blog ? [{ href: "/blog/", label: "Блог" }] : []),
-  { href: "/about/", label: "О компании" },
-  { href: "/contacts/", label: "Контакты" },
+  { href: "/how-it-works/", label: "how it works" },
+  { href: "/faq/", label: "faq" },
+  { href: "/roadmap/", label: "roadmap" },
+  ...(site.features.blog ? [{ href: "/blog/", label: "blog" }] : []),
 ];

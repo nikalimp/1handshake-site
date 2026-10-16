@@ -1,14 +1,17 @@
 import { site } from "@/content/site";
-import { Container, Section } from "./container";
+import { Container, H2, Section } from "./container";
 import { Button } from "./ui/button";
 
-export function Cta({ title = "TODO(клиент): заголовок призыва", text = "TODO(клиент): что получит человек после клика" }: { title?: string; text?: string }) {
+export function Cta({ title = "already a member?", text = "Sign in with Google. Not a member yet? Meet one — that's the only way in." }: { title?: string; text?: string }) {
   return (
     <Section className="border-t">
-      <Container className="text-center">
-        <h2 className="text-3xl font-semibold tracking-tight text-balance">{title}</h2>
-        <p className="mx-auto mt-3 max-w-xl text-muted-foreground">{text}</p>
-        <Button asChild size="lg" className="mt-7"><a href={site.cta.href}>{site.cta.label}</a></Button>
+      <Container className="flex flex-col items-center gap-5 text-center">
+        <H2>{title}</H2>
+        <p className="max-w-xl text-lg text-muted-foreground">{text}</p>
+        <div className="flex w-full flex-wrap justify-center gap-3">
+          <Button asChild size="lg"><a href={site.cta.href} data-event="sign_in_click">{site.cta.label}</a></Button>
+          <Button asChild size="lg" variant="outline"><a href="/how-it-works/#get-in">how to get in</a></Button>
+        </div>
       </Container>
     </Section>
   );

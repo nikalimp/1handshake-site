@@ -1,53 +1,64 @@
-// llms.txt и llms-full.txt (https://llmstxt.org) — генерируются из того же контента, что и страницы.
+// llms.txt и llms-full.txt (llmstxt.org) — из того же контента, что и страницы.
 import { site } from "@/content/site";
-import { services } from "@/content/services";
-import { about, home } from "@/content/home";
+import { faq } from "@/content/faq";
+import { how } from "@/content/how";
+import { openSource } from "@/content/open-source";
+import { roadmap } from "@/content/roadmap";
 import { getPosts } from "./posts";
 
-// Простой текст для нейросетей: неразрывные пробелы типографа заменяем обычными
-const plain = (s: string) => s.replace(/\u00A0/g, " ").replace(/\u2060/g, "");
-const c = site.contacts;
-
-function contacts() {
-  return [
-    c.phone && `- Телефон: ${c.phoneDisplay || c.phone}`,
-    c.email && `- Почта: ${c.email}`,
-    c.telegram && `- Telegram: ${c.telegram}`,
-    c.whatsapp && `- WhatsApp: ${c.whatsapp}`,
-    c.address.street && `- Адрес: ${[c.address.city, c.address.street].filter(Boolean).join(", ")}`,
-    c.hours && `- Часы работы: ${c.hours}`,
-    `- Сайт: ${site.url}`,
-  ]
-    .filter(Boolean)
-    .join("\n");
-}
+const plain = (s: string) => s.replace(/ /g, " ").replace(/⁠/g, "");
 
 export function llmsTxt() {
   const posts = getPosts();
   return plain(`# ${site.name}
 
-> ${home.answer}
+> ${site.description}
 
-## Услуги
-${services.map((s) => `- [${s.title}](${site.url}/services/${s.slug}/): ${s.short} ${s.prices[0] ? `${s.prices[0].name} — ${s.prices[0].value}.` : ""}`).join("\n")}
-${posts.length ? `\n## Статьи\n${posts.map((p) => `- [${p.title}](${site.url}/blog/${p.slug}/): ${p.description}`).join("\n")}\n` : ""}
-## О компании
-- [О компании](${site.url}/about/): ${site.tagline}
-- [Контакты](${site.url}/contacts/)
-- Подробная версия для LLM: ${site.url}/llms-full.txt
+${site.name} is free and open source (AGPL-3.0). Members sign in at ${site.links.app}. Every member has a public card at ${site.url}/@handle with a plain-text version at ${site.url}/@handle/llms.txt.
 
-## Контакты
-${contacts()}
+## Pages
+- [How it works](${site.url}/how-it-works/): ${how.answer}
+- [FAQ](${site.url}/faq/): answers about joining, privacy, cards, intros and data.
+- [Open code, closed data](${site.url}/open-source/): ${openSource.answer}
+- [Roadmap](${site.url}/roadmap/): what is live, what comes next, what comes later.
+${posts.length ? `\n## Blog\n${posts.map((p) => `- [${p.title}](${site.url}/blog/${p.slug}/): ${p.description}`).join("\n")}\n` : ""}
+## Links
+- App: ${site.links.app}
+- Code: ${site.links.github}
+- Privacy: ${site.links.privacy}
+- Full version for LLMs: ${site.url}/llms-full.txt
 `);
 }
 
 export function llmsFullTxt() {
-  const blocks = services.map(
-    (s) =>
-      `## ${s.h1}\nURL: ${site.url}/services/${s.slug}/\n\n${s.answer}\n\nКому подходит:\n${s.forWhom.map((f) => `- ${f}`).join("\n")}\n\nЧто входит:\n${s.includes.map((i) => `- ${i.title}: ${i.text}`).join("\n")}\n\nСтоимость:\n${s.prices.map((p) => `- ${p.name}: ${p.value}${p.note ? ` (${p.note})` : ""}`).join("\n")}\n\nСроки: ${s.timeline}\n${s.faq.length ? `\nВопросы:\n${s.faq.map((f) => `- ${f.q} ${f.a}`).join("\n")}\n` : ""}`,
-  );
-  const posts = getPosts().map((p) => `## ${p.title}\nURL: ${site.url}/blog/${p.slug}/\nДата: ${p.updated ?? p.date}\n\n${p.body}`);
-  return plain(
-    `${llmsTxt()}\n---\n\n# Частые вопросы\n\n${home.faq.map((f) => `- ${f.q} ${f.a}`).join("\n")}\n\n---\n\n# Услуги\n\n${blocks.join("\n\n")}\n\n---\n\n# О компании\n\n${about.body}\n${posts.length ? `\n---\n\n# Статьи\n\n${posts.join("\n\n")}\n` : ""}`,
-  );
+  const posts = getPosts().map((p) => `## ${p.title}\nURL: ${site.url}/blog/${p.slug}/\nDate: ${p.updated ?? p.date}\n\n${p.body}`);
+  return plain(`${llmsTxt()}
+---
+
+# How it works
+
+${how.answer}
+
+${how.steps.map((s) => `${s.n}. ${s.title}: ${s.text}`).join("\n")}
+
+---
+
+# FAQ
+
+${faq.map((f) => `## ${f.q}\n${f.a}`).join("\n\n")}
+
+---
+
+# Open code, closed data
+
+${openSource.answer}
+
+${openSource.rows.map((r) => `- ${r.k}: ${r.v}`).join("\n")}
+
+---
+
+# Roadmap
+
+${roadmap.map((g) => `## ${g.title}\n${g.items.map((i) => `- ${i.title}: ${i.text}`).join("\n")}`).join("\n\n")}
+${posts.length ? `\n---\n\n# Blog\n\n${posts.join("\n\n")}\n` : ""}`);
 }

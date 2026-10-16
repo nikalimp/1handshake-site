@@ -4,7 +4,7 @@ import { Container, Section } from "@/components/container";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Страница не найдена",
+  title: "page not found",
   robots: { index: false, follow: true },
   alternates: { canonical: null },
 };
@@ -12,10 +12,11 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <Section>
-      <Container className="max-w-xl text-center">
-        <p className="font-mono text-sm text-muted-foreground">404</p>
-        <h1 className="mt-2 text-3xl font-semibold tracking-tight">Страница не найдена</h1>
-        <Button asChild className="mt-6"><Link href="/">На главную</Link></Button>
+      <Container className="flex max-w-xl flex-col items-center gap-4 text-center">
+        <p className="meta text-muted-foreground">404 · 👻</p>
+        <h1 className="text-4xl font-extrabold tracking-[-0.03em]">this page is a ghost</h1>
+        <p className="text-muted-foreground">The page you're looking for doesn't exist or has moved.</p>
+        <Button asChild className="mt-2"><Link href="/">home</Link></Button>
       </Container>
     </Section>
   );

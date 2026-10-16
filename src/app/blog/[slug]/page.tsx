@@ -14,7 +14,6 @@ export const dynamicParams = false;
 
 export function generateStaticParams() {
   const posts = getPosts();
-  // Next.js со статическим экспортом требует хотя бы один путь — заглушка не попадает в sitemap
   return posts.length ? posts.map((p) => ({ slug: p.slug })) : [{ slug: "_" }];
 }
 
@@ -34,14 +33,14 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   if (!p) notFound();
   return (
     <>
-      <JsonLd data={graph(articleSchema(p), breadcrumbs([{ name: "Главная", path: "/" }, { name: "Блог", path: "/blog/" }, { name: p.title, path: `/blog/${p.slug}/` }]))} />
+      <JsonLd data={graph(articleSchema(p), breadcrumbs([{ name: "home", path: "/" }, { name: "blog", path: "/blog/" }, { name: p.title, path: `/blog/${p.slug}/` }]))} />
       <Section className="pt-12">
-        <Container className="max-w-3xl">
-          <Crumbs items={[{ name: "Главная", path: "/" }, { name: "Блог", path: "/blog/" }, { name: p.title }]} />
-          <h1 className="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">{p.title}</h1>
-          <p className="mt-4 text-sm text-muted-foreground">
-            {site.person ? site.person.name : site.name} · <time dateTime={p.date}>{formatDate(p.date)}</time>
-            {p.updated && p.updated !== p.date && <> · обновлено <time dateTime={p.updated}>{formatDate(p.updated)}</time></>}
+        <Container className="max-w-[760px]">
+          <Crumbs items={[{ name: "home", path: "/" }, { name: "blog", path: "/blog/" }, { name: p.title }]} />
+          <h1 className="text-[36px] leading-[42px] font-extrabold tracking-[-0.03em] sm:text-[48px] sm:leading-[54px]">{p.title}</h1>
+          <p className="meta mt-5 text-muted-foreground">
+            {site.name} · <time dateTime={p.date}>{formatDate(p.date)}</time>
+            {p.updated && p.updated !== p.date && <> · updated <time dateTime={p.updated}>{formatDate(p.updated)}</time></>}
           </p>
           <article className="prose-site mt-10">
             <Markdown remarkPlugins={[remarkGfm]}>{p.body}</Markdown>

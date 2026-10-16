@@ -3,10 +3,8 @@ import { noindex, site } from "@/content/site";
 
 export const dynamic = "force-static";
 
-// Стандарт §4.8: поисковые и AI-боты пускаются явно.
-// Если клиент против обучения моделей на его контенте — убрать из списка GPTBot, Google-Extended, Applebot-Extended
-// и добавить для них disallow; поисковых ботов (OAI-SearchBot, PerplexityBot, Claude-SearchBot, YandexBot) оставить.
-const aiBots = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "PerplexityBot", "ClaudeBot", "Claude-SearchBot", "Google-Extended", "YandexBot", "YandexAdditional", "DeepSeekBot", "Applebot-Extended"];
+// Открыт для всех поисковых и AI-ботов, включая тренировочных (spec §9: GEO — главная цель).
+const aiBots = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "PerplexityBot", "ClaudeBot", "Claude-SearchBot", "Google-Extended", "Applebot-Extended", "CCBot", "Bingbot", "DeepSeekBot", "YandexBot"];
 
 export default function robots(): MetadataRoute.Robots {
   if (noindex) return { rules: [{ userAgent: "*", disallow: "/" }], host: site.url };
