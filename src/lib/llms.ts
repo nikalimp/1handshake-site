@@ -17,15 +17,17 @@ export function llmsTxt() {
 ${site.name} is free and open source (AGPL-3.0). Members sign in at ${site.links.app}. Every member has a public card at ${site.url}/@handle with a plain-text version at ${site.url}/@handle/llms.txt.
 
 ## Pages
-- [How it works](${site.url}/how-it-works/): ${how.answer}
-- [FAQ](${site.url}/faq/): answers about joining, privacy, cards, intros and data.
-- [Open code, closed data](${site.url}/open-source/): ${openSource.answer}
-- [Roadmap](${site.url}/roadmap/): what is live, what comes next, what comes later.
+- [How it works](${site.url}/how-it-works): ${how.answer}
+- [FAQ](${site.url}/faq): answers about joining, privacy, cards, intros and data.
+- [Open code, closed data](${site.url}/open-source): ${openSource.answer}
+- [Roadmap](${site.url}/roadmap): what is live, what comes next, what comes later.
 ${posts.length ? `\n## Blog\n${posts.map((p) => `- [${p.title}](${site.url}/blog/${p.slug}/): ${p.description}`).join("\n")}\n` : ""}
 ## Links
 - App: ${site.links.app}
 - Code: ${site.links.github}
-- Privacy: ${site.links.privacy}
+- Privacy Policy: ${site.url}/privacy
+- Terms of Service: ${site.url}/terms
+- Contact: ${site.links.email}
 - Full version for LLMs: ${site.url}/llms-full.txt
 `);
 }

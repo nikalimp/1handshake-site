@@ -21,8 +21,9 @@ export const site = {
   links: {
     app: "https://app.1handshake.com",
     github: "https://github.com/nikalimp/1handshake",
-    privacy: "https://app.1handshake.com/privacy",
-    terms: "https://app.1handshake.com/terms",
+    privacy: "/privacy",
+    terms: "/terms",
+    email: "hello@1handshake.com",
     developer: { label: "built by @nikalimp", href: "https://nikalimp.ru" },
   },
 
@@ -44,8 +45,8 @@ export const site = {
 export const noindex = process.env.NOINDEX === "1";
 
 export const nav = [
-  { href: "/how-it-works/", label: "how it works" },
-  { href: "/faq/", label: "faq" },
-  { href: "/roadmap/", label: "roadmap" },
-  ...(site.features.blog ? [{ href: "/blog/", label: "blog" }] : []),
+  { href: "/how-it-works", label: "how it works" },
+  { href: "/faq", label: "faq" },
+  { href: "/roadmap", label: "roadmap" },
+  ...(site.features.blog ? [{ href: "/blog", label: "blog" }] : []),
 ];

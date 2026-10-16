@@ -12,12 +12,12 @@ import { breadcrumbs, graph, pageSchema } from "@/lib/schema";
 const title = "Open code, closed data: how we treat your data";
 const description = "1handshake is open source under AGPL-3.0. What data it keeps, where it is stored (EU, Frankfurt), what is public, and how to export or delete your account.";
 
-export const metadata: Metadata = { title, description, alternates: { canonical: "/open-source/" } };
+export const metadata: Metadata = { title, description, alternates: { canonical: "/open-source" } };
 
 export default function OpenSource() {
   return (
     <>
-      <JsonLd data={graph(pageSchema("AboutPage", "/open-source/", title, description), breadcrumbs([{ name: "home", path: "/" }, { name: "open source", path: "/open-source/" }]))} />
+      <JsonLd data={graph(pageSchema("AboutPage", "/open-source", title, description), breadcrumbs([{ name: "home", path: "/" }, { name: "open source", path: "/open-source" }]))} />
       <Section className="dot-grid border-b pt-12">
         <Container className="max-w-[880px]">
           <Crumbs items={[{ name: "home", path: "/" }, { name: "open source" }]} />
@@ -25,7 +25,7 @@ export default function OpenSource() {
           <p className="mt-6 text-xl leading-8 text-muted-foreground">{openSource.answer}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild size="lg"><a href={site.links.github}>code on github ↗</a></Button>
-            <Button asChild size="lg" variant="outline"><a href={site.links.privacy}>privacy policy</a></Button>
+            <Button asChild size="lg" variant="outline"><a href={site.links.privacy}>Privacy Policy</a></Button>
           </div>
         </Container>
       </Section>

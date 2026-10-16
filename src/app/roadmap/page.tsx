@@ -9,13 +9,13 @@ import { breadcrumbs, graph, itemListSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Roadmap: what's live, what's next and later",
   description: "The public roadmap of 1handshake: invites by selfie, intros and cards are live; events with one QR code for all guests come next; then MCP, companies and more.",
-  alternates: { canonical: "/roadmap/" },
+  alternates: { canonical: "/roadmap" },
 };
 
 export default function Roadmap() {
   return (
     <>
-      <JsonLd data={graph(...roadmap.map((g) => itemListSchema(`1handshake roadmap — ${g.title}`, g.items.map((i) => ({ name: i.title, description: i.text })))), breadcrumbs([{ name: "home", path: "/" }, { name: "roadmap", path: "/roadmap/" }]))} />
+      <JsonLd data={graph(...roadmap.map((g) => itemListSchema(`1handshake roadmap — ${g.title}`, g.items.map((i) => ({ name: i.title, description: i.text })))), breadcrumbs([{ name: "home", path: "/" }, { name: "roadmap", path: "/roadmap" }]))} />
       <Section className="pt-12">
         <Container>
           <Crumbs items={[{ name: "home", path: "/" }, { name: "roadmap" }]} />

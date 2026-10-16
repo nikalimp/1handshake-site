@@ -1,6 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "trailingSlash": true,
+  "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
     { "source": "/@:handle/llms.txt", "destination": "https://app.1handshake.com/@:handle/llms.txt" },
     { "source": "/@:handle", "destination": "https://app.1handshake.com/@:handle" },

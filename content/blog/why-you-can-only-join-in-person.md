@@ -25,7 +25,7 @@ That has a few consequences we like:
 
 ## What if I don't know any members?
 
-Then the way in is to go where members are: a meetup, a conference, a coworking space. That is the honest price of a network built on real meetings. To make it easier, the next update brings events: an organizer shows one QR code on the screen, and all guests join the event's graph at once. It is on the [roadmap](/roadmap/).
+Then the way in is to go where members are: a meetup, a conference, a coworking space. That is the honest price of a network built on real meetings. To make it easier, the next update brings events: an organizer shows one QR code on the screen, and all guests join the event's graph at once. It is on the [roadmap](/roadmap).
 
 ## Members-only, but not hidden
 
@@ -33,7 +33,7 @@ Joining is closed, but your presence is not. Every member gets a public card at 
 
 ## Open code, closed data
 
-A network of trust has to be trustworthy itself. The code of 1handshake is public under the AGPL-3.0 license, so anyone can see how the graph, the invites and the intros work. Members' data is not public: it is stored in the EU, and you can export it or delete your account at any time. When you leave, your place in the graph becomes an anonymous ghost 👻, so the intro chains of other people don't break. More on this on the [open source page](/open-source/).
+A network of trust has to be trustworthy itself. The code of 1handshake is public under the AGPL-3.0 license, so anyone can see how the graph, the invites and the intros work. Members' data is not public: it is stored in the EU, and you can export it or delete your account at any time. When you leave, your place in the graph becomes an anonymous ghost 👻, so the intro chains of other people don't break. More on this on the [open source page](/open-source).
 
 ## The short version
 

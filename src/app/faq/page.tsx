@@ -10,13 +10,13 @@ import { breadcrumbs, faqSchema, graph } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "1handshake FAQ: joining, privacy, cards and intros",
   description: "Answers about 1handshake: how to join, what is public and private, where data is stored, what cards and intros are, and whether it is free and open source.",
-  alternates: { canonical: "/faq/" },
+  alternates: { canonical: "/faq" },
 };
 
 export default function FaqPage() {
   return (
     <>
-      <JsonLd data={graph(faqSchema(faq), breadcrumbs([{ name: "home", path: "/" }, { name: "faq", path: "/faq/" }]))} />
+      <JsonLd data={graph(faqSchema(faq), breadcrumbs([{ name: "home", path: "/" }, { name: "faq", path: "/faq" }]))} />
       <Section className="pt-12">
         <Container className="flex max-w-[840px] flex-col gap-8">
           <div>

@@ -12,7 +12,7 @@ import { breadcrumbs, faqSchema, graph, howToSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "How 1handshake works: invites, intros and cards",
   description: "How to join 1handshake: meet a member, take a selfie together, scan a one-time QR code and make your card. Then ask for intros through mutual friends.",
-  alternates: { canonical: "/how-it-works/" },
+  alternates: { canonical: "/how-it-works" },
 };
 
 const more = [
@@ -27,7 +27,7 @@ const qs = faq.filter((_, i) => [3, 6, 7, 13].includes(i));
 export default function HowItWorks() {
   return (
     <>
-      <JsonLd data={graph(howToSchema("How to join 1handshake", how.steps), faqSchema(qs), breadcrumbs([{ name: "home", path: "/" }, { name: "how it works", path: "/how-it-works/" }]))} />
+      <JsonLd data={graph(howToSchema("How to join 1handshake", how.steps), faqSchema(qs), breadcrumbs([{ name: "home", path: "/" }, { name: "how it works", path: "/how-it-works" }]))} />
       <Section className="dot-grid border-b pt-12">
         <Container className="max-w-[880px]">
           <Crumbs items={[{ name: "home", path: "/" }, { name: "how it works" }]} />

@@ -39,7 +39,7 @@ The best way to get intros is to make them: connect people you know when you see
 
 ## How 1handshake turns this into a product
 
-[1handshake](/how-it-works/) is built around warm intros. You join only by meeting a member in person, so every connection in the graph is a meeting that really happened. You can see the people your connections know — everyone one handshake away — and ask to meet them through the friends you share. Those friends see the request and can back it with 🔥, so the person you want to meet sees who vouches for you. There are no cold messages from strangers.
+[1handshake](/how-it-works) is built around warm intros. You join only by meeting a member in person, so every connection in the graph is a meeting that really happened. You can see the people your connections know — everyone one handshake away — and ask to meet them through the friends you share. Those friends see the request and can back it with 🔥, so the person you want to meet sees who vouches for you. There are no cold messages from strangers.
 
 Each member also has a public card at 1handshake.com/@handle with their role, city, bio, links and what they need and can offer — the one link a friend can send when they introduce you.
 

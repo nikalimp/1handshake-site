@@ -33,7 +33,7 @@ export default function Home() {
             <p className="max-w-[540px] text-[19px] leading-[29px] text-muted-foreground">{home.answer}</p>
             <div className="flex flex-wrap gap-3">
               <Button asChild size="lg"><a href={site.cta.href} data-event="sign_in_click">{site.cta.label}</a></Button>
-              <Button asChild size="lg" variant="outline"><Link href="/how-it-works/#get-in">how to get in</Link></Button>
+              <Button asChild size="lg" variant="outline"><Link href="/how-it-works#get-in">how to get in</Link></Button>
             </div>
             <p className="meta text-muted-foreground">members only · no waitlist · open source</p>
           </div>
@@ -50,7 +50,7 @@ export default function Home() {
           <Container className="flex flex-wrap items-center gap-x-6 gap-y-2 py-5">
             <span className="meta text-brand">recent news</span>
             {posts.slice(0, 2).map((p) => (
-              <Link key={p.slug} href={`/blog/${p.slug}/`} className="flex items-baseline gap-3 text-[15px] font-semibold hover:text-brand">
+              <Link key={p.slug} href={`/blog/${p.slug}`} className="flex items-baseline gap-3 text-[15px] font-semibold hover:text-brand">
                 {p.title}<span className="meta font-normal text-muted-foreground">{formatDate(p.date)}</span>
               </Link>
             ))}
@@ -64,7 +64,7 @@ export default function Home() {
           <Container className="flex flex-col gap-10">
             <div className="flex flex-wrap items-baseline justify-between gap-3">
               <H2>how it works</H2>
-              <Link href="/how-it-works/" className="meta text-brand">full walkthrough →</Link>
+              <Link href="/how-it-works" className="meta text-brand">full walkthrough →</Link>
             </div>
             <ol className="grid gap-px border bg-border sm:grid-cols-2 lg:grid-cols-4">
               {how.steps.map((st) => (
@@ -153,7 +153,7 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <Link href="/open-source/" className="font-semibold text-brand">open code, closed data →</Link>
+              <Link href="/open-source" className="font-semibold text-brand">open code, closed data →</Link>
             </div>
             <dl className="border-t">
               {openSource.rows.map((r) => (
@@ -185,12 +185,12 @@ export default function Home() {
           <Container className="flex flex-col gap-8">
             <div className="flex flex-wrap items-baseline justify-between gap-3">
               <H2>blog</H2>
-              <Link href="/blog/" className="meta text-brand">all posts →</Link>
+              <Link href="/blog" className="meta text-brand">all posts →</Link>
             </div>
             <ul className="border-t">
               {posts.slice(0, 3).map((p) => (
                 <li key={p.slug} className="border-b">
-                  <Link href={`/blog/${p.slug}/`} className="flex flex-col justify-between gap-1 py-5 text-xl font-bold hover:text-brand sm:flex-row sm:gap-6">
+                  <Link href={`/blog/${p.slug}`} className="flex flex-col justify-between gap-1 py-5 text-xl font-bold hover:text-brand sm:flex-row sm:gap-6">
                     <span>{p.title}</span>
                     <span className="meta font-normal text-muted-foreground">{formatDate(p.date)}</span>
                   </Link>
@@ -201,13 +201,30 @@ export default function Home() {
         </Section>
       )}
 
+      {/* Google sign-in — требование проверки Google OAuth: зачем вход, какие данные, ссылка на Privacy Policy */}
+      <Section className="border-t">
+        <Container className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1fr_1.4fr] [&>*]:min-w-0">
+          <div className="flex flex-col gap-4">
+            <Eyebrow className="mb-0">sign in with google</Eyebrow>
+            <H2>why we ask for google</H2>
+          </div>
+          <div className="flex flex-col gap-5 text-lg leading-8 text-muted-foreground">
+            <p>1handshake uses Sign in with Google only to create your account and to sign you in. From Google we get your name and email address (and the link to your profile picture, if your account has one). We never see your password and get no access to your Gmail, Drive or contacts.</p>
+            <p>Your email stays private — only you can see it. Read exactly what we keep and why in our <a href="/privacy" className="font-semibold text-brand underline underline-offset-4">Privacy Policy</a> and <a href="/terms" className="font-semibold text-brand underline underline-offset-4">Terms of Service</a>.</p>
+            <div className="flex flex-wrap gap-3 pt-1">
+              <Button asChild size="lg"><a href={site.cta.href} data-event="sign_in_click">open the app</a></Button>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
       {/* FAQ — A + C */}
       {s.faq && (
         <Section className="border-t">
           <Container className="flex max-w-[840px] flex-col gap-8">
             <H2 className="text-center">questions</H2>
             <FaqList items={faqItems} open={1} />
-            <Link href="/faq/" className="self-center font-semibold text-brand">all questions →</Link>
+            <Link href="/faq" className="self-center font-semibold text-brand">all questions →</Link>
           </Container>
         </Section>
       )}

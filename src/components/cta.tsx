@@ -10,7 +10,7 @@ export function Cta({ title = "already a member?", text = "Sign in with Google. 
         <p className="max-w-xl text-lg text-muted-foreground">{text}</p>
         <div className="flex w-full flex-wrap justify-center gap-3">
           <Button asChild size="lg"><a href={site.cta.href} data-event="sign_in_click">{site.cta.label}</a></Button>
-          <Button asChild size="lg" variant="outline"><a href="/how-it-works/#get-in">how to get in</a></Button>
+          <Button asChild size="lg" variant="outline"><a href="/how-it-works#get-in">how to get in</a></Button>
         </div>
       </Container>
     </Section>

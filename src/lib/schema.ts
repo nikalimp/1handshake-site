@@ -58,13 +58,13 @@ export function articleSchema(p: { slug: string; title: string; description: str
     "@type": "BlogPosting",
     headline: p.title,
     description: p.description,
-    url: `${site.url}/blog/${p.slug}/`,
+    url: `${site.url}/blog/${p.slug}`,
     datePublished: p.date,
     dateModified: p.updated ?? p.date,
     inLanguage: "en",
     author: { "@id": orgId },
     publisher: { "@id": orgId },
-    mainEntityOfPage: `${site.url}/blog/${p.slug}/`,
+    mainEntityOfPage: `${site.url}/blog/${p.slug}`,
   };
 }
 

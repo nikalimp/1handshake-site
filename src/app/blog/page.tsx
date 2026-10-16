@@ -13,7 +13,7 @@ const description = "Product news from 1handshake and articles about warm introd
 export const metadata: Metadata = {
   title,
   description,
-  alternates: { canonical: "/blog/" },
+  alternates: { canonical: "/blog" },
   ...(!site.features.blog && { robots: { index: false, follow: true } }),
 };
 
@@ -21,7 +21,7 @@ export default function Blog() {
   const posts = getPosts();
   return (
     <>
-      <JsonLd data={graph(pageSchema("CollectionPage", "/blog/", title, description), breadcrumbs([{ name: "home", path: "/" }, { name: "blog", path: "/blog/" }]))} />
+      <JsonLd data={graph(pageSchema("CollectionPage", "/blog", title, description), breadcrumbs([{ name: "home", path: "/" }, { name: "blog", path: "/blog" }]))} />
       <Section className="pt-12">
         <Container className="max-w-[880px]">
           <Crumbs items={[{ name: "home", path: "/" }, { name: "blog" }]} />
@@ -34,7 +34,7 @@ export default function Blog() {
           <ul className="mt-12 border-t">
             {posts.map((p) => (
               <li key={p.slug} className="border-b">
-                <Link href={`/blog/${p.slug}/`} className="block py-7 hover:text-brand">
+                <Link href={`/blog/${p.slug}`} className="block py-7 hover:text-brand">
                   <p className="meta text-muted-foreground"><time dateTime={p.date}>{formatDate(p.date)}</time></p>
                   <h2 className="mt-2 text-2xl font-bold tracking-[-0.01em]">{p.title}</h2>
                   <p className="mt-2 leading-7 text-muted-foreground">{p.description}</p>

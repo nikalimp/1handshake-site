@@ -33,7 +33,7 @@ Many people in tech replace the LinkedIn profile with a personal site or a link-
 
 The last category tries to fix the graph itself: closed networks where joining requires a real relationship.
 
-**1handshake** is our take. You can join only by meeting a member in person — a joint selfie becomes a one-time QR invite — so every connection is a meeting that happened. You see the people your connections know and ask to meet them through the friends you share, who can back the request with 🔥. Every member gets a public card at 1handshake.com/@handle with an llms.txt version. It is free and open source under AGPL-3.0. [How it works →](/how-it-works/)
+**1handshake** is our take. You can join only by meeting a member in person — a joint selfie becomes a one-time QR invite — so every connection is a meeting that happened. You see the people your connections know and ask to meet them through the friends you share, who can back the request with 🔥. Every member gets a public card at 1handshake.com/@handle with an llms.txt version. It is free and open source under AGPL-3.0. [How it works →](/how-it-works)
 
 **Good for:** warm intros between people in tech who actually know each other. **Keep in mind:** you need to meet a member to get in, and the network is young.
 

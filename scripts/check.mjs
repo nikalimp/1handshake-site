@@ -76,7 +76,8 @@ if (md) {
 
 // 3. Индексация
 const MIN_WORDS = 250; // минимум слов в <main> для каждой страницы из sitemap (стандарт §2 «Индексация»)
-const THIN_OK = ["/contacts/"]; // служебные страницы, где объём не важен; добавлять сюда только с причиной в specs/02-spec.md, §9
+const THIN_OK = ["/contacts/"];
+const TITLE_OK = ["/privacy", "/terms"]; // заголовок вкладки задан Ником дословно для Google OAuth (spec §9) // служебные страницы, где объём не важен; добавлять сюда только с причиной в specs/02-spec.md, §9
 const sitemapXml = fs.readFileSync(path.join(OUT, "sitemap.xml"), "utf8");
 const entries = [...sitemapXml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(([, u]) => ({
   loc: (u.match(/<loc>([^<]+)<\/loc>/) || [])[1], lastmod: (u.match(/<lastmod>([^<]+)<\/lastmod>/) || [])[1],
@@ -85,7 +86,8 @@ const TITLE_MIN = 40, TITLE_MAX = 65, DESC_MIN = 120, DESC_MAX = 160; // дли�
 const unesc = (t) => t.replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#x27;|&#39;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&nbsp;/g, " ");
 const idx = { noindex: [], canonical: [], thin: [], shortTitle: [], longTitle: [], desc: [] };
 for (const { loc } of entries) {
-  const file = path.join(OUT, decodeURI(new URL(loc).pathname), "index.html");
+  const pn = decodeURI(new URL(loc).pathname);
+  const file = [path.join(OUT, pn, "index.html"), path.join(OUT, `${pn.replace(/\/$/, "")}.html`)].find((f) => fs.existsSync(f)) ?? path.join(OUT, pn, "index.html");
   if (!fs.existsSync(file)) { fail(`В sitemap есть ${loc}, а страницы нет`); continue; }
   const html = fs.readFileSync(file, "utf8");
   if (/<meta name="robots" content="[^"]*noindex/.test(html)) idx.noindex.push(loc);
@@ -93,7 +95,7 @@ for (const { loc } of entries) {
   if (canon !== loc) idx.canonical.push(`${loc} → ${canon ?? "нет"}`);
   const p = new URL(loc).pathname;
   const title = unesc((html.match(/<title>([^<]*)<\/title>/) || [])[1] ?? "");
-  if (title.length < TITLE_MIN) idx.shortTitle.push(`${p} «${title}» (${title.length})`);
+  if (title.length < TITLE_MIN && !TITLE_OK.includes(p)) idx.shortTitle.push(`${p} «${title}» (${title.length})`);
   if (title.length > TITLE_MAX) idx.longTitle.push(`${p} (${title.length})`);
   const desc = unesc((html.match(/<meta name="description" content="([^"]*)"/) || [])[1] ?? "");
   if (desc.length < DESC_MIN || desc.length > DESC_MAX) idx.desc.push(`${p} (${desc.length})`);
@@ -118,7 +120,7 @@ if (!fs.readdirSync(path.join(ROOT, "public")).some((f) => /^[a-f0-9]{32}\.txt$/
 // 4–5. Метрика, ИНН/ОГРН, политика и согласие (152-ФЗ), Главред — не применяются: Global, EN (specs/02-spec.md §9).
 // Политика и условия живут в app; проверяем, что ссылки на них есть на главной.
 const home = fs.readFileSync(path.join(OUT, "index.html"), "utf8");
-for (const u of ["app.1handshake.com/privacy", "app.1handshake.com/terms"]) {
+for (const u of ['href="/privacy"', 'href="/terms"', "hello@1handshake.com"]) {
   if (home.includes(u)) ok(`Ссылка на ${u} есть`);
   else prodFail(`Нет ссылки на ${u} в подвале`);
 }
