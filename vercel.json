@@ -3,8 +3,8 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/@:handle/llms.txt", "destination": "https://app.1handshake.com/@:handle/llms.txt" },
-    { "source": "/@:handle", "destination": "https://app.1handshake.com/@:handle" },
+    { "source": "/@:handle/llms.txt", "destination": "https://app.1handshake.com/u/:handle/llms.txt" },
+    { "source": "/@:handle", "destination": "https://app.1handshake.com/u/:handle" },
     { "source": "/_next/image", "destination": "https://app.1handshake.com/_next/image" }
   ]
 }

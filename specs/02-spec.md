@@ -116,7 +116,7 @@
 | Функция | Как работает | Данные | Примечание |
 |---|---|---|---|
 | `sign in` | ссылка на `https://app.1handshake.com` | — | во всех CTA |
-| Визитки `/@handle` | `vercel.json` rewrites: `/@:handle` → `https://app.1handshake.com/@:handle`, `/@:handle/llms.txt` → то же | — | **в app:** `assetPrefix`/абсолютные ассеты, иначе через прокси сломаются `/_next/*`, шрифты, картинки; canonical визитки — `https://1handshake.com/@handle` (уже относительный `/@handle` — проверить metadataBase) |
+| Визитки `/@handle` | `vercel.json` rewrites: `/@:handle` → `https://app.1handshake.com/u/:handle`, `/@:handle/llms.txt` → `/u/:handle/llms.txt` (app сам редиректит свои `/@handle` на корень — прокси на `/@` дал бы петлю); `/@handle/` → 308 на `/@handle` | — | **в app:** `assetPrefix`/абсолютные ассеты, иначе через прокси сломаются `/_next/*`, шрифты, картинки; canonical визитки — `https://1handshake.com/@handle` (уже относительный `/@handle` — проверить metadataBase) |
 | Блог | `content/blog/*.md` + frontmatter (title, description, date, updated) | — | контент-завод после запуска |
 | Roadmap | `src/content/roadmap.ts` | — | синхронизация с BACKLOG вручную |
 | llms.txt / llms-full.txt | генерация из контента | — | плюс ссылка на пример визитки |
