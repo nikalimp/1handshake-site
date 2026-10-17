@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${site.url}/faq`, priority: 0.9 },
     { url: `${site.url}/open-source`, priority: 0.8 },
     { url: `${site.url}/roadmap`, priority: 0.7 },
+    { url: `${site.url}/ideas`, lastModified: "2026-10-17", priority: 0.4 },
     { url: `${site.url}/privacy`, lastModified: "2026-10-16", priority: 0.3 },
     { url: `${site.url}/terms`, lastModified: "2026-10-16", priority: 0.3 },
     ...(posts.length ? [{ url: `${site.url}/blog`, lastModified: posts.map((p) => p.updated ?? p.date).sort().at(-1), priority: 0.7 }] : []),

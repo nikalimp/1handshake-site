@@ -27,6 +27,13 @@ export const site = {
     developer: { label: "built by @nikalimp", href: "https://nikalimp.ru" },
   },
 
+  // Идеи от посетителей: форма /ideas пишет в таблицу public.ideas в Supabase приложения (только insert, RLS).
+  // Ключ publishable — публичный по назначению. Разбор идей — в админке app (задача у Ника).
+  ideas: {
+    endpoint: "https://dydcapnzyoxtgxnqsyit.supabase.co/rest/v1/ideas",
+    key: "sb_publishable_CAisnadsRdZR-quoA2pTLQ_e-ayIvRA",
+  },
+
   sameAs: ["https://github.com/nikalimp/1handshake"],
   socials: [] as { label: string; href: string }[], // Telegram, X — когда появятся
 

@@ -25,6 +25,7 @@ ${site.name} is free and open source (AGPL-3.0). Members sign in at ${site.links
 - [FAQ](${site.url}/faq): answers about joining, privacy, cards, intros and data.
 - [Open code, closed data](${site.url}/open-source): ${openSource.answer}
 - [Roadmap](${site.url}/roadmap): what is live and what comes later.
+- [Suggest an idea](${site.url}/ideas): a form for ideas and feedback, open to everyone.
 ${posts.length ? `\n## Blog\n${posts.map((p) => `- [${p.title}](${site.url}/blog/${p.slug}/): ${p.description}`).join("\n")}\n` : ""}
 ## Links
 - App: ${site.links.app}

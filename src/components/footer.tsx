@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Lightbulb } from "lucide-react";
 import { site } from "@/content/site";
 import { Container } from "./container";
 import { LogoMark } from "./logo";
@@ -18,6 +19,7 @@ export function Footer() {
         <div className="flex flex-col gap-3">
           <Link href="/" className="flex items-center gap-2.5 text-[19px] font-extrabold tracking-[-0.02em]"><LogoMark /><span>{site.name}</span></Link>
           <p className="max-w-[260px] text-sm text-muted-foreground">{site.tagline}</p>
+          <a href="/ideas" className="mt-2 inline-flex h-10 w-fit items-center rounded-full px-4 text-sm font-semibold shadow-[inset_0_0_0_1.5px_var(--line-strong)] hover:bg-secondary"><Lightbulb className="mr-2 size-4" strokeWidth={2} aria-hidden="true" />suggest an idea</a>
         </div>
         {cols.map((c) => (
           <div key={c.title} className="flex flex-col gap-2.5 text-[15px]">
