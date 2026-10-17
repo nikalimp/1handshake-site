@@ -46,8 +46,8 @@ export const noindex = process.env.NOINDEX === "1";
 
 export const nav = [
   { href: "/how-it-works", label: "how it works" },
-  { href: "/events", label: "events" },
-  { href: "/faq", label: "faq" },
+  { href: "/events", label: "events", also: ["/hosts"] },
   { href: "/roadmap", label: "roadmap" },
   ...(site.features.blog ? [{ href: "/blog", label: "blog" }] : []),
+  { href: "/faq", label: "faq" },
 ];

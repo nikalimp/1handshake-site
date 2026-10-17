@@ -2,6 +2,7 @@
 import { site } from "@/content/site";
 import { eventsPage } from "@/content/events";
 import { faq } from "@/content/faq";
+import { hostsPage } from "@/content/hosts";
 import { how } from "@/content/how";
 import { openSource } from "@/content/open-source";
 import { roadmap } from "@/content/roadmap";
@@ -20,6 +21,7 @@ ${site.name} is free and open source (AGPL-3.0). Members sign in at ${site.links
 ## Pages
 - [How it works](${site.url}/how-it-works): ${how.answer}
 - [Events](${site.url}/events): ${eventsPage.answer}
+- [Host an event](${site.url}/hosts): ${hostsPage.answer}
 - [FAQ](${site.url}/faq): answers about joining, privacy, cards, intros and data.
 - [Open code, closed data](${site.url}/open-source): ${openSource.answer}
 - [Roadmap](${site.url}/roadmap): what is live, what comes next, what comes later.
@@ -58,6 +60,16 @@ ${eventsPage.members}
 ${eventsPage.hosts}
 
 Calendar: ${site.url}/events · each event has a page at ${site.url}/e/<slug>.
+
+---
+
+# Host an event
+
+${hostsPage.answer}
+
+${hostsPage.why.map((w) => `- ${w.title}: ${w.text}`).join("\n")}
+
+${hostsPage.steps.map((s) => `${s.n}. ${s.title}: ${s.text}`).join("\n")}
 
 ---
 

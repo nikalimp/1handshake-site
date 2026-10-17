@@ -47,6 +47,7 @@
 - [x] **T26** `/events`: календарь из API app (сборка + обновление в браузере), фильтры по датам и месту, шаги «как попасть на ивенте», блоки для участников и хостов, FAQ, JSON-LD (CollectionPage, ItemList of Event, FAQPage) — *spec:* §4, §5, §7 · *проверка:* ивенты в HTML без JS, 360 px без горизонтального скролла, `npm run check`
 - [x] **T27** Прокси `/e/:slug` → app `/ev/:slug`; events в шапке и подвале; блок «come to an event» на главной; sitemap, llms.txt — *проверка:* geo-check ≥ 8/10
 - [x] **T28** Тексты: FAQ («without knowing a member», «what's next»), how it works 01, roadmap (ивенты → live), статья о вступлении — *проверка:* нет обещаний «один QR для всех гостей»
+- [x] **T30** `/hosts`: лендинг организаторов (ценности, шаги, FAQ, HowTo), ссылки с `/events` и из подвала; шапка без github, faq последним; подсветка активной страницы в шапке и подвале — *проверка:* `npm run check`, 390 px без скролла, подсветка есть в HTML без JS
 - [ ] **T29** Пересборка сайта при изменении ивентов: Deploy Hook в Vercel-проекте сайта → переменная `SITE_DEPLOY_HOOK_URL` в Vercel app — *проверка:* одобрил ивент → через 1–2 минуты он в HTML `/events`
 
 ## Вопросы
@@ -60,3 +61,4 @@
 - 2026-10-16 · T01–T14, T18, T19 · ветка `build`: стартер очищен от РФ-частей (about, contacts, services, privacy-policy, consent, cookie, Метрика, deploy.yml); site.ts; токены бренда в OKLCH + Figtree/Geist Mono локально; шапка/подвал/тема; vercel.json (rewrites /@ → app); check.mjs под исключения §9; главная — hero с графом кольцами + все секции §2.1 под флагами `home.sections`; /how-it-works/, /faq/ (17), /open-source/, /roadmap/ (live 15 · next 3 · later 11), блог EN; OG 1200×630 и apple-icon. `npm run check` (без NOINDEX): пройдена, geo-check 9.8/10, 9 страниц в sitemap. Скриншоты 1440 / 360, светлая и тёмная — без горизонтального скролла.
 - 2026-10-16 · T15–T17 · 3 статьи написаны, ждут ревью Ника.
 - 2026-10-17 · T26–T28 · ветка `events-calendar`: /events (календарь, фильтры, как попасть, хосты, FAQ), прокси /e/:slug, блок на главной, шапка/подвал, тексты. `npm run check` на тестовом API: пройдена, geo-check 9.5/10, 12 страниц в sitemap; 390 / 1280 px, обе темы — без горизонтального скролла.
+- 2026-10-17 · T30 · /hosts, навигация, подсветка активной страницы; публикация по разрешению Ника.

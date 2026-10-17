@@ -3,7 +3,7 @@
 import type { Faq } from "@/components/faq";
 
 export const eventsPage = {
-  title: "Tech networking events — the 1handshake calendar",
+  title: "Tech networking events calendar",
   description: "Upcoming networking events for people in tech, hosted by members of 1handshake. Come to one, meet a member, take a selfie together — and you're in the club.",
   answer:
     "Upcoming networking events for people in tech, hosted by members of 1handshake. Anyone can come. If you're not a member yet, an event is the easiest way in: members are in the room, and a selfie with any of them gets you into the club.",

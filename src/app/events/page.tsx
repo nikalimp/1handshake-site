@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { site } from "@/content/site";
 import { eventsPage } from "@/content/events";
 import { Container, Eyebrow, H2, Section } from "@/components/container";
@@ -100,8 +101,9 @@ export default async function Events() {
             <Eyebrow className="mb-0">for hosts</Eyebrow>
             <H2>host an event</H2>
             <p className="text-lg leading-7 text-muted-foreground">{eventsPage.hosts}</p>
-            <div>
+            <div className="flex flex-wrap items-center gap-4">
               <Button asChild size="lg" variant="outline"><a href={`${site.links.app}/events/new`}>host an event</a></Button>
+              <Link href="/hosts" className="meta text-brand hover:underline">why host with 1handshake →</Link>
             </div>
           </div>
         </Container>
