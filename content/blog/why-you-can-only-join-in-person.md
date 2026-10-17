@@ -5,7 +5,7 @@ date: 2026-10-16
 updated: 2026-10-16
 ---
 
-**You can only join 1handshake by meeting a member in person.** There is no sign-up form and no waitlist. A member takes a selfie with you, and the selfie becomes a QR code that works once and lives for 5 minutes. You scan it with your phone, tell about yourself, and you are in. Every connection in the network starts this way — with two people who were in the same place at the same time.
+**You can only join 1handshake by meeting a member in person.** There is no sign-up form and no waitlist. A member takes a selfie with you, and the selfie becomes a QR code that works once and lives for 10 minutes. You scan it with your phone, tell about yourself, and you are in. Every connection in the network starts this way — with two people who were in the same place at the same time.
 
 ## The problem with online networks
 
