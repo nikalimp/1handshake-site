@@ -4,7 +4,7 @@
 import type { Faq } from "@/components/faq";
 
 export const hostsPage = {
-  title: "Host a networking event with 1handshake",
+  title: "Host a networking event for people in tech",
   description: "Host your meetup on 1handshake: it goes into the club's calendar and feed, members check in with your QR code and connect with everyone who came. Free.",
   answer:
     "Host your meetup on 1handshake and it goes into the club's calendar at 1handshake.com/events and into the members' feed. At the door, members check in with your QR code and see everyone who came, so the connections made in the room don't scatter after it. It's free, and registration stays wherever you keep it.",
