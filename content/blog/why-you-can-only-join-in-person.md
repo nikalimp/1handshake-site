@@ -29,7 +29,7 @@ Then the way in is to go where members are: a meetup, a conference, a coworking 
 
 ## Members-only, but not hidden
 
-Joining is closed, but your presence is not. Every member gets a public card at 1handshake.com/@handle — name, role, city, bio and links, plus a plain-text llms.txt version that search engines and AI assistants can read. Your card works for you even outside the club. Your connections and your “i need / i can” stay with members.
+Joining is closed, but your presence is not. Every member gets a public card at 1handshake.com/@handle — name, role, city, bio and links, plus a plain-text llms.txt version that search engines and AI assistants can read. Your card works for you even outside the club. Your offers are public too; your connections stay with members.
 
 ## Open code, closed data
 
