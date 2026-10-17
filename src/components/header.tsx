@@ -5,6 +5,7 @@ import { Container } from "./container";
 import { Button } from "./ui/button";
 import { ThemeToggle } from "./theme-toggle";
 import { LogoMark } from "./logo";
+import { NavLink } from "./nav-link";
 
 // Мобильное меню на <details>: работает без JavaScript.
 function MobileMenu() {
@@ -17,9 +18,8 @@ function MobileMenu() {
       <div className="absolute inset-x-0 top-16 max-h-[calc(100dvh-4rem)] overflow-y-auto border-b bg-background px-4 pb-6 pt-2">
         <ul className="border-b py-2">
           {nav.map((n) => (
-            <li key={n.href}><a href={n.href} className="block py-3 text-[17px] font-medium">{n.label}</a></li>
+            <li key={n.href}><NavLink plain href={n.href} also={"also" in n ? n.also : undefined} className="block py-3 text-[17px] font-medium">{n.label}</NavLink></li>
           ))}
-          <li><a href={site.links.github} className="block py-3 text-[17px] font-medium">github ↗</a></li>
         </ul>
         <Button asChild size="lg" className="mt-5 w-full"><a href={site.cta.href} data-event="sign_in_click">{site.cta.label}</a></Button>
       </div>
@@ -37,9 +37,8 @@ export function Header() {
         </Link>
         <nav aria-label="main" className="meta hidden items-center gap-7 text-[13px] text-muted-foreground md:flex">
           {nav.map((n) => (
-            <Link key={n.href} href={n.href} className="hover:text-foreground">{n.label}</Link>
+            <NavLink key={n.href} href={n.href} also={"also" in n ? n.also : undefined} className="hover:text-foreground" activeClassName="text-brand hover:text-brand">{n.label}</NavLink>
           ))}
-          <a href={site.links.github} className="hover:text-foreground">github ↗</a>
         </nav>
         <div className="flex items-center gap-1">
           {site.darkTheme && <ThemeToggle />}

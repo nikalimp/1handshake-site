@@ -5,6 +5,7 @@
   "rewrites": [
     { "source": "/@:handle/llms.txt", "destination": "https://app.1handshake.com/u/:handle/llms.txt" },
     { "source": "/@:handle", "destination": "https://app.1handshake.com/u/:handle" },
+    { "source": "/e/:slug", "destination": "https://app.1handshake.com/ev/:slug" },
     { "source": "/_next/image", "destination": "https://app.1handshake.com/_next/image" }
   ]
 }

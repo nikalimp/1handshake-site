@@ -2,7 +2,7 @@
 
 > Главный документ проекта: **что** строим. **Как** — стандарт AI-Ready сайта, кроме пунктов из §9 «Исключения».
 > Spec хранит только текущее состояние; история — в `changes.md`.
-> Версия: 0.2 · Статус: утверждён Ником 2026-10-16 (v0.2 — юр. страницы, см. changes.md)
+> Версия: 0.3.1 · Статус: утверждён Ником 2026-10-17 (v0.3 — календарь ивентов, v0.3.1 — /hosts и навигация, см. changes.md)
 > **Ветка:** новый сайт · **Режим:** ускоренный — собственный продукт Ника, трафика нет; spec и дизайн утверждает Ник.
 
 ## 1. Коротко
@@ -36,7 +36,7 @@
 - **Возражения и ответы:**
   | Возражение | Ответ на сайте | Где |
   |---|---|---|
-  | «у меня нет знакомых участников» | как попасть: прийти туда, где бывают участники; ивенты — в roadmap (v1.1) | `/how-it-works/`, FAQ |
+  | «у меня нет знакомых участников» | прийти на ивент из календаря: хосты и гости — участники, селфи с любым из них = вступление | `/events`, `/how-it-works/`, FAQ, главная |
   | «очередной Clubhouse, хайп пройдёт» | держит польза — тёплые интро и визитка, — а не эксклюзивность | `/how-it-works/`, блог |
   | «а мои данные?» | что храним, где, кто что видит, экспорт и удаление | FAQ, `/open-source/` |
   | «зачем, если есть LinkedIn» | граф встреч против графа визиток | блог (P0 статья №2) |
@@ -48,6 +48,9 @@
 | `/how-it-works/` | Механика | how 1handshake works | как попасть, тёплые интро | 2, 13 | four steps: meet a member, take a selfie together, scan the 5-minute QR, get your card. after that you see people one handshake away and ask for intros through mutual friends. | HowTo, BreadcrumbList | P0 |
 | `/faq/` | FAQ | questions about 1handshake | бренд, приватность | 1–7 | короткие ответы на 15–20 вопросов; первые — «what's the idea?» и «what about privacy?» | FAQPage, BreadcrumbList | P0 |
 | `/open-source/` | Манифест | open code, closed data | open source соцсеть, верифицированный граф | 6, 11, 15, 22 | the code of 1handshake is public under AGPL-3.0; members' data is not. what we store, where, who sees what. | AboutPage, BreadcrumbList | P0 |
+| `/events` | Календарь | events | нетворкинг-ивенты для IT, как попасть в 1handshake | 2, 13 | Upcoming networking events for people in tech, hosted by members of 1handshake. Anyone can come; a selfie with any member there gets you in. | CollectionPage, ItemList (Event), FAQPage, BreadcrumbList | P0 |
+| `/hosts` | Лендинг организаторов | host an event | провести нетворкинг-ивент для IT | — | Host your meetup on 1handshake: it goes into the club's calendar and feed; members check in with your QR and connect with everyone who came. Free, registration stays yours. | WebPage, HowTo, FAQPage, BreadcrumbList | P0 |
+| `/e/<slug>` | Страница ивента | — (app) | название ивента | — | отдаёт app через rewrite на `/ev/<slug>` | Event (в app) | P0 (rewrite) |
 | `/roadmap/` | Roadmap | roadmap | бренд | — | что уже работает, что следующее (v1.1 — ивенты), что позже; из `BACKLOG.md` без 🗄, монетизации и непринятых идей Claude | ItemList, BreadcrumbList | P0 |
 | `/blog/` | Хаб блога | blog | — | — | новости продукта и статьи о нетворкинге | Blog, BreadcrumbList | P0 |
 | `/blog/<slug>/` | Статья ×3 | см. §5 | тёплые интро, альтернатива LinkedIn, манифест | 12, 8, 11 | — | BlogPosting, BreadcrumbList | P0 |
@@ -61,8 +64,8 @@
 Объём: каждая индексируемая страница — от 250 слов основного текста (стандарт §2.8). Страницы городов — только под реальные ивенты (P2).
 
 ### Навигация
-- **Шапка:** знак `1h` + `1handshake` · how it works · faq · roadmap · blog · кнопка `sign in` (пилюля fire)
-- **Подвал (как у telegram.org — разделами):** product (how it works, roadmap, releases·P1) · about (faq, open source, blog) · legal (privacy, terms → app) · code (GitHub) · каналы (Telegram, X — только если есть ссылки) · тег разработчика (§5)
+- **Шапка:** знак `1h` + `1handshake` · how it works · events · roadmap · blog · faq · кнопка `sign in` (пилюля fire); github — только в подвале. Текущая страница (и вложенные: статьи → blog) подсвечена акцентом `--brand` в шапке и подвале, `aria-current=page`
+- **Подвал (как у telegram.org — разделами):** product (how it works, events, for hosts, roadmap, releases·P1) · about (faq, open source, blog) · legal (privacy, terms → app) · code (GitHub) · каналы (Telegram, X — только если есть ссылки) · тег разработчика (§5)
 - **Мобильное меню:** те же 4 пункта + `sign in` внизу; переключатель темы light / dark / system
 
 ## 5. Контент страниц
@@ -81,6 +84,14 @@
 ### `/how-it-works/`
 Блоки: 1) прямой ответ; 2) шаги инвайта: селфи вместе → QR на 5 минут с селфи в центре → гость сканирует камерой → рассказывает о себе голосом или текстом → AI собирает визитку → вступление, 🤝 создан; 3) connect: люди через одно рукопожатие, `connect` / `skip`, запрос идёт через общего знакомого, он может поддержать 🔥; 4) feed и стена; 5) graph; 6) визитка `/@handle` + llms.txt, I need / I can (размыт для гостей); 7) видимость: open to hiring / open to network; 8) как попасть без знакомых участников (честно: найти участника; ивенты — v1.1); 9) FAQ 3–5. Скриншоты app — с тестовыми данными.
 Источник: `Product/MVP — флоу и экраны.md`, Техархитектура «Статус разработки».
+
+### `/events`
+Блоки: 1) прямой ответ + кнопки «see the calendar» / «how to get in at an event»; 2) календарь: фильтры по датам (upcoming · next 7 days · this weekend · next 30 days) и месту (города из ивентов · online), ивенты по дням во времени зоне ивента — обложка, время, название, место, цена, «N going», хост, `register ↗`; клик — страница ивента `/e/<slug>`; 3) how to get in at an event 01–04 (выбрать ивент → прийти и познакомиться → селфи вместе → ты в клубе); 4) for members: чек-ин по QR хоста, все пришедшие — в connect; 5) for hosts: любой участник создаёт ивент в app (импорт из Luma), после одобрения — в календаре; кнопка → `app.1handshake.com/events/new`; 6) FAQ по ивентам (4); 7) CTA.
+Важно: QR ивента — только для участников; вступление — по-прежнему селфи с участником (решение Ника 2026-10-16).
+Главная: блок «come to an event» (3 ближайших ивента + «all events →»; без ивентов — ссылка на календарь), флаг `home.sections.events`.
+
+### `/hosts`
+Блоки: 1) прямой ответ + `host an event` (→ `app.1handshake.com/events/new`) и `see the calendar`; 2) why host with 1handshake? — 6 блоков: календарь и лента клуба · все пришедшие остаются на связи · только настоящие связи · повод прийти для новичков · регистрация остаётся твоей (без оплаты и комиссий) · счётчики going / checked in; 3) шаги 01–05: быть участником → создать ивент (импорт Luma) → ревью → QR у входа → все на связи; 4) FAQ (5); 5) CTA. Цифр аудитории нет — не пишем. Ссылка с `/events` (блок for hosts) и из подвала.
 
 ### `/faq/` — первая очередь вопросов
 1. what's the idea of 1handshake? *(Ник)* 2. what about privacy? *(Ник)* 3. how do I join? 4. can I join without knowing a member? 5. is it free? 6. who can see my profile? 7. what is a card and llms.txt? 8. what is an intro and a fire 🔥? 9. what happens when I delete my account? (ghost 👻) 10. where is my data stored? 11. is 1handshake open source? which license? 12. how is it different from linkedin? 13. why only google sign-in? 14. what is open to hiring / open to network? 15. who builds 1handshake? (ответ без лица: независимый open-source проект; тег разработчика) 16. is there a mobile app? (PWA) 17. what's next? → roadmap.
@@ -119,6 +130,8 @@
 | Визитки `/@handle` | `vercel.json` rewrites: `/@:handle` → `https://app.1handshake.com/u/:handle`, `/@:handle/llms.txt` → `/u/:handle/llms.txt` (app сам редиректит свои `/@handle` на корень — прокси на `/@` дал бы петлю); `/@handle/` → 308 на `/@handle` | — | **в app:** `assetPrefix`/абсолютные ассеты, иначе через прокси сломаются `/_next/*`, шрифты, картинки; canonical визитки — `https://1handshake.com/@handle` (уже относительный `/@handle` — проверить metadataBase) |
 | Блог | `content/blog/*.md` + frontmatter (title, description, date, updated) | — | контент-завод после запуска |
 | Roadmap | `src/content/roadmap.ts` | — | синхронизация с BACKLOG вручную |
+| Календарь ивентов | при сборке `GET https://app.1handshake.com/api/events` (переменная `EVENTS_API`) → HTML; в браузере тот же API обновляет список (CORS открыт); фильтры — в адресе `?when=&place=` | одобренные ивенты участников | app недоступен при сборке → календарь пустой, браузер подтянет; пересборка сайта — deploy hook из app при одобрении, правке и отмене ивента (`SITE_DEPLOY_HOOK_URL` в Vercel app) |
+| Страницы ивентов `/e/<slug>` | `vercel.json` rewrite → `https://app.1handshake.com/ev/<slug>` (внутренний путь, как `/u/` у визиток — без петли после переключения) | — | разметка Event, canonical — в app |
 | llms.txt / llms-full.txt | генерация из контента | — | плюс ссылка на пример визитки |
 | Аналитика | нет (Privacy Policy: «no analytics trackers»); метрики — Search Console / Bing Webmaster | — | Ник, 2026-10-16 |
 | Тема | light / dark / system | localStorage | как в app |

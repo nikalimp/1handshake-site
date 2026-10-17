@@ -25,7 +25,7 @@ That has a few consequences we like:
 
 ## What if I don't know any members?
 
-Then the way in is to go where members are: a meetup, a conference, a coworking space. That is the honest price of a network built on real meetings. To make it easier, the next update brings events: an organizer shows one QR code on the screen, and all guests join the event's graph at once. It is on the [roadmap](/roadmap).
+Then the way in is to go where members are: a meetup, a conference, a coworking space. That is the honest price of a network built on real meetings. To make it easier, there is an [events calendar](/events): members host meetups and come to them, so a selfie with one of them is never far away.
 
 ## Members-only, but not hidden
 
