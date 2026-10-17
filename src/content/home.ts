@@ -23,7 +23,7 @@ export const home = {
     { icon: "card", title: "your card", text: "A public page at 1handshake.com/@you, with llms.txt for search and AI." },
     { icon: "code", title: "open code", text: "The code is public on GitHub under AGPL-3.0." },
     { icon: "lock", title: "closed data", text: "Your data lives in the EU. Export it or delete your account any time." },
-    { icon: "list", title: "i need · i can", text: "Say what you need and what you can help with; AI finds matches." },
+    { icon: "list", title: "offers", text: "Post an order, a project, a product or a service; members say they're interested." },
     { icon: "circle", title: "free", text: "No paid plans. Once you're in, sign in with Google." },
   ],
   manifesto: {

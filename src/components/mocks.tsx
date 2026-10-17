@@ -36,9 +36,10 @@ export function CardMock() {
       <p className="text-[28px] leading-8 font-extrabold tracking-[-0.02em]">anna kim <span className="font-semibold text-muted-foreground">— product designer</span></p>
       <span className="meta text-muted-foreground">@anna · tbilisi · design · 🤝 12</span>
       <p className="leading-6">Designs tools for founders. Runs a monthly design crit.</p>
-      <div className="relative overflow-hidden rounded-[14px] bg-secondary p-4">
-        <p className="select-none blur-[5px]" aria-hidden="true">i need: a cofounder with backend. i can: review your onboarding.</p>
-        <span className="absolute inset-0 grid place-items-center text-sm font-semibold">i need · i can — members only</span>
+      <div className="flex flex-col gap-1.5 rounded-[14px] border p-4">
+        <span className="meta w-fit rounded-full bg-secondary px-2.5 py-1">service</span>
+        <p className="font-bold">Design crit for your onboarding</p>
+        <span className="meta text-muted-foreground">i'm interested · members</span>
       </div>
       <div className="meta whitespace-pre-line rounded-lg border border-dashed border-line-strong bg-background p-3 leading-[18px] text-muted-foreground">{"# anna kim — product designer\ncard: 1handshake.com/@anna\ncity: tbilisi"}</div>
     </div>

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 const more = [
-  { title: "connect", text: "The connect tab shows people one handshake away — the connections of your connections. Matches between your “i need” and their “i can” come first. You can connect or skip; nothing happens until you decide." },
+  { title: "connect", text: "The connect tab shows people one handshake away — the connections of your connections — and the people you checked in with at events. People with open offers come first. You can connect or skip; nothing happens until you decide." },
   { title: "feed and wall", text: "Incoming intro requests sit at the top of your feed, sorted by fire. Below are events from your circle: who joined, who met whom. Every profile has a wall, and the joint selfie from your invite is its first post." },
   { title: "graph", text: "Your network on one screen: you in the center, your handshakes around you, and people one handshake away on the outer ring. Filter it by city and by sphere — only the ones present in your own graph." },
   { title: "visibility", text: "“Open to hiring” lets members see your profile and send you requests. “Open to network” lets them see your connections; it works only together with “open to hiring”. Both are on by default, and your public card is always indexed while your account exists." },
@@ -75,7 +75,7 @@ export default function HowItWorks() {
           <div className="flex flex-col gap-4">
             <Eyebrow className="mb-0">your card</Eyebrow>
             <H2>a card that works for you</H2>
-            <p className="text-lg leading-7 text-muted-foreground">Your card lives at 1handshake.com/@handle: your name and role as the title, your city, a markdown bio and your social links. The same card is published as llms.txt, so search engines and AI assistants can read who you are. Guests see your “i need” and “i can” blurred — they open once someone joins the club.</p>
+            <p className="text-lg leading-7 text-muted-foreground">Your card lives at 1handshake.com/@handle: your name and role as the title, your city, a markdown bio and your social links. The same card is published as llms.txt, so search engines and AI assistants can read who you are. Your offers sit on the card too — orders, projects, products and services — and members can tell you they're interested.</p>
           </div>
         </Container>
       </Section>

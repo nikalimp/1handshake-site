@@ -51,7 +51,7 @@
 | `/events` | Календарь | events | нетворкинг-ивенты для IT, как попасть в 1handshake | 2, 13 | Upcoming networking events for people in tech, hosted by members of 1handshake. Anyone can come; a selfie with any member there gets you in. | CollectionPage, ItemList (Event), FAQPage, BreadcrumbList | P0 |
 | `/hosts` | Лендинг организаторов | host an event | провести нетворкинг-ивент для IT | — | Host your meetup on 1handshake: it goes into the club's calendar and feed; members check in with your QR and connect with everyone who came. Free, registration stays yours. | WebPage, HowTo, FAQPage, BreadcrumbList | P0 |
 | `/e/<slug>` | Страница ивента | — (app) | название ивента | — | отдаёт app через rewrite на `/ev/<slug>` | Event (в app) | P0 (rewrite) |
-| `/roadmap/` | Roadmap | roadmap | бренд | — | что уже работает, что следующее (v1.1 — ивенты), что позже; из `BACKLOG.md` без 🗄, монетизации и непринятых идей Claude | ItemList, BreadcrumbList | P0 |
+| `/roadmap/` | Roadmap | roadmap | бренд | — | что уже работает и что позже (колонку «next» убрали 2026-10-17); из `BACKLOG.md` без 🗄, монетизации и непринятых идей Claude | ItemList, BreadcrumbList | P0 |
 | `/blog/` | Хаб блога | blog | — | — | новости продукта и статьи о нетворкинге | Blog, BreadcrumbList | P0 |
 | `/blog/<slug>/` | Статья ×3 | см. §5 | тёплые интро, альтернатива LinkedIn, манифест | 12, 8, 11 | — | BlogPosting, BreadcrumbList | P0 |
 | `/@<handle>` | Визитка | — (app) | персональные запросы участников | 19, 20 | отдаёт app через rewrite | ProfilePage (в app) | P0 (rewrite) |
@@ -101,7 +101,7 @@
 Манифест «open code, closed data»: репозиторий и лицензия AGPL-3.0 (что значит: можно читать и запускать; модифицированный сервис — делиться изменениями); что храним (email Google, визитка, день рождения — видишь только ты, рукопожатия и запросы, совместное селфи); где (Postgres и хранилище в ЕС, Франкфурт; фото перекодируются на устройстве, метаданные удаляются); кто что видит; права (экспорт, удаление → ghost). Источник: `app/src/app/privacy/page.tsx`, `app/README.md`.
 
 ### `/roadmap/`
-Три колонки / секции: **live** (сделано в MVP) · **next** (v1.1: ивенты, рефки организаторов, QR ивента) · **later** (директ, группы, компании, чек-ины, AI-матчинг, MCP, дни рождения, мультиязычность…). Данные — `src/content/roadmap.ts`, переносится из `BACKLOG.md` вручную (бэклог вне репозитория); при изменении бэклога Claude обновляет файл. Не публикуем: 🗄, монетизацию (10.9), непринятые идеи Claude. Рекрутмент (6.4) — показываем в «later» как фичу (Ник, 2026-10-16).
+Две секции: **live** (сделано) · **later** (директ, группы, компании, чек-ины, AI-матчинг, MCP, дни рождения, мультиязычность…). Данные — `src/content/roadmap.ts`, переносится из `BACKLOG.md` вручную (бэклог вне репозитория); при изменении бэклога Claude обновляет файл. Не публикуем: 🗄, монетизацию (10.9), непринятые идеи Claude. Рекрутмент (6.4) — показываем в «later» как фичу (Ник, 2026-10-16).
 
 ### Блог — P0 (3 статьи, пишет Claude, утверждает Ник)
 | slug | Заголовок (черновик) | Кластер |
