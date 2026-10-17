@@ -1,6 +1,6 @@
 # Terms of Service
 
-**Effective date:** 16 October 2026
+**Effective date:** 17 October 2026
 
 These terms are an agreement between you and **Nikita Alimpiev**, an individual based in Tbilisi, Georgia, who runs 1handshake ("1handshake", "we", "us"), a members-only networking club for people in tech at 1handshake.com and app.1handshake.com (the "Service"). By joining or using the Service you accept these terms and our [Privacy Policy](/privacy).
 
@@ -12,8 +12,8 @@ These terms are an agreement between you and **Nikita Alimpiev**, an individual 
 
 ## 2. Your card and content
 
-- You own what you post: your card, photos, "I need / I can", wall posts and anything else you add ("your content").
-- You give us a worldwide, non-exclusive, royalty-free licence to store, display and process your content only to run and improve the Service — for example, to show your card, deliver intros and find matches. The licence ends when you delete the content or your account.
+- You own what you post: your card, photos, offers, wall posts and anything else you add ("your content").
+- You give us a worldwide, non-exclusive, royalty-free licence to store, display and process your content only to run and improve the Service — for example, to show your card and offers and deliver intros. The licence ends when you delete the content or your account.
 - **Your visit card is public.** It can be viewed by anyone and indexed by search engines and AI assistants, including as an llms.txt file. Don't put anything on it you don't want public.
 - You are responsible for your content and must have the right to post it. Only post selfies and photos of people who agreed to it.
 
@@ -33,13 +33,14 @@ Don't:
 
 ## 5. Moderation and ending your account
 
-- We may remove content, hide selfies, cancel connections, or suspend or close accounts that break these terms or put members at risk. Where reasonable, we will tell you why.
+- We may remove content, hide selfies, posts or offers, cancel connections, or suspend or close accounts that break these terms or put members at risk. Where reasonable, we will tell you why.
 - You can delete your account at any time in your profile. Your personal data is erased as described in the Privacy Policy, and your place in the graph stays as an anonymous 👻 node.
 
-## 6. Intros, matches and AI
+## 6. Intros, offers and AI
 
 - 1handshake helps people meet; it doesn't guarantee any intro, reply, job, deal or outcome. Use your own judgement when dealing with other members.
-- Card drafts, transcriptions and matches are made by AI and can be wrong. You see and can edit everything before it is saved.
+- 1handshake doesn't take part in deals made through offers and doesn't take payments; agree on terms directly with the other member.
+- Card drafts and transcriptions are made by AI and can be wrong. You see and can edit everything before it is saved.
 
 ## 7. The service and its code
 
