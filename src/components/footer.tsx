@@ -4,7 +4,7 @@ import { Container } from "./container";
 import { LogoMark } from "./logo";
 
 const cols = [
-  { title: "product", links: [{ href: "/how-it-works", label: "how it works" }, { href: "/roadmap", label: "roadmap" }, { href: site.cta.href, label: "sign in" }] },
+  { title: "product", links: [{ href: "/how-it-works", label: "how it works" }, { href: "/events", label: "events" }, { href: "/roadmap", label: "roadmap" }, { href: site.cta.href, label: "sign in" }] },
   { title: "about", links: [{ href: "/faq", label: "faq" }, { href: "/open-source", label: "open source" }, ...(site.features.blog ? [{ href: "/blog", label: "blog" }] : [])] },
   { title: "legal", links: [{ href: site.links.privacy, label: "Privacy Policy" }, { href: site.links.terms, label: "Terms of Service" }, { href: `mailto:${site.links.email}`, label: site.links.email }] },
   { title: "code", links: [{ href: site.links.github, label: "github" }, { href: "/llms.txt", label: "llms.txt" }, ...site.socials.map((s) => ({ href: s.href, label: s.label }))] },

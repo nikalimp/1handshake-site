@@ -4,6 +4,7 @@ export const home = {
     "1handshake is a members-only network for people in tech. You get in only by meeting a member in person — a joint selfie becomes a one-time invite — and every intro comes through someone you both know.",
   sections: {
     news: true,
+    events: true,
     how: true,
     getIn: true,
     intros: true,
@@ -37,6 +38,6 @@ export const home = {
     { k: "leave", v: "export · delete" },
   ],
   extraFaq: [
-    { q: "No one I know is a member?", a: "Then the way in is a meetup or event where members are. Events with one QR code for all guests are next on the roadmap." },
+    { q: "No one I know is a member?", a: "Then come to an event from the calendar at 1handshake.com/events. Members host them and come to them — a selfie with any of them gets you in." },
   ],
 };

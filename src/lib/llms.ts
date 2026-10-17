@@ -1,5 +1,6 @@
 // llms.txt и llms-full.txt (llmstxt.org) — из того же контента, что и страницы.
 import { site } from "@/content/site";
+import { eventsPage } from "@/content/events";
 import { faq } from "@/content/faq";
 import { how } from "@/content/how";
 import { openSource } from "@/content/open-source";
@@ -18,6 +19,7 @@ ${site.name} is free and open source (AGPL-3.0). Members sign in at ${site.links
 
 ## Pages
 - [How it works](${site.url}/how-it-works): ${how.answer}
+- [Events](${site.url}/events): ${eventsPage.answer}
 - [FAQ](${site.url}/faq): answers about joining, privacy, cards, intros and data.
 - [Open code, closed data](${site.url}/open-source): ${openSource.answer}
 - [Roadmap](${site.url}/roadmap): what is live, what comes next, what comes later.
@@ -42,6 +44,20 @@ export function llmsFullTxt() {
 ${how.answer}
 
 ${how.steps.map((s) => `${s.n}. ${s.title}: ${s.text}`).join("\n")}
+
+---
+
+# Events
+
+${eventsPage.answer}
+
+${eventsPage.getIn.map((s) => `${s.n}. ${s.title}: ${s.text}`).join("\n")}
+
+${eventsPage.members}
+
+${eventsPage.hosts}
+
+Calendar: ${site.url}/events · each event has a page at ${site.url}/e/<slug>.
 
 ---
 

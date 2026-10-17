@@ -23,17 +23,15 @@ export const roadmap: { id: "live" | "next" | "later"; title: string; lead: stri
       { title: "Export and delete", text: "Download your data as JSON or delete your account; you become a ghost 👻." },
       { title: "Reports and moderation", text: "Three reports on a fake selfie hide it until a moderator decides." },
       { title: "Install as an app", text: "Add 1handshake to your home screen (PWA), light and dark theme." },
+      { title: "Events", text: "Members host events with a cover, date, place, price and a registration link; the calendar is at 1handshake.com/events." },
+      { title: "Check-in at events", text: "Members scan the host's QR code at the door and see everyone who came, then connect in one tap." },
     ],
   },
   {
     id: "next",
     title: "next",
-    lead: "The first update after launch.",
-    items: [
-      { title: "Events", text: "An event page with date and place; all guests land in one graph." },
-      { title: "One QR code for all guests", text: "An organizer shows the code on screen and everyone joins." },
-      { title: "Organizer invite links", text: "Organizers invite their guests with their own link." },
-    ],
+    lead: "The next update — we're choosing what goes in. Follow the blog.",
+    items: [],
   },
   {
     id: "later",

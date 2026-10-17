@@ -13,13 +13,16 @@ import { JsonLd } from "@/components/json-ld";
 import { RingsGraph } from "@/components/rings-graph";
 import { CardMock, IntroMock, InviteMock } from "@/components/mocks";
 import { faqSchema, graph } from "@/lib/schema";
+import { eventPath, getCalendar } from "@/lib/events";
+import { dayLabel, placeLine, timeRange } from "@/lib/event-format";
 
 const icons = { user: UserRound, flame: Flame, check: BadgeCheck, network: Network, card: IdCard, code: Code2, lock: Lock, list: ListChecks, circle: Sparkle } as const;
 
-export default function Home() {
+export default async function Home() {
   const s = home.sections;
   const posts = getPosts();
   const faqItems = [...homeFaq, ...home.extraFaq];
+  const upcoming = s.events ? (await getCalendar()).events.filter((e) => !e.cancelled).slice(0, 3) : [];
   return (
     <>
       <JsonLd data={graph(faqSchema(faqItems))} />
@@ -56,6 +59,45 @@ export default function Home() {
             ))}
           </Container>
         </section>
+      )}
+
+      {/* Events — the way in for people who don't know a member yet */}
+      {s.events && (
+        <Section className="border-b">
+          <Container className="flex flex-col gap-8">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <Eyebrow>don&apos;t know a member yet?</Eyebrow>
+                <H2>come to an event</H2>
+                <p className="mt-4 max-w-[620px] text-lg leading-7 text-muted-foreground">Members host meetups for people in tech. Come to one, meet a member, take a selfie together — and you&apos;re in.</p>
+              </div>
+              <Link href="/events" className="meta text-brand">all events →</Link>
+            </div>
+            {upcoming.length > 0 ? (
+              <ul className="grid gap-4 md:grid-cols-3">
+                {upcoming.map((e) => (
+                  <li key={e.slug}>
+                    <a href={eventPath(e.slug)} className="flex h-full flex-col overflow-hidden rounded-[28px] border bg-card hover:border-[var(--line-strong)]">
+                      {e.cover_url ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={e.cover_url} alt="" loading="lazy" width={400} height={400} className="aspect-[4/3] w-full object-cover" />
+                      ) : (
+                        <span className="dot-grid block aspect-[4/3] w-full bg-muted" />
+                      )}
+                      <span className="flex flex-col gap-1 p-5">
+                        <span className="meta text-brand">{dayLabel(e.starts_at, e.timezone)} · {timeRange(e)}</span>
+                        <span className="text-[19px] leading-6 font-bold">{e.title}</span>
+                        <span className="truncate text-[15px] text-muted-foreground">{placeLine(e)}</span>
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <Link href="/events" className="rounded-[28px] border border-dashed px-6 py-10 text-center text-muted-foreground hover:text-foreground">the calendar fills up as members host events — see what&apos;s on →</Link>
+            )}
+          </Container>
+        </Section>
       )}
 
       {/* How it works 01–04 — B */}
