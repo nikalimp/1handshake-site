@@ -28,7 +28,7 @@
 - **Боль:** холодный нетворкинг — спам в личке, коннекты с незнакомцами, лента хвастовства.
 - **Оффер одной фразой:** a members-only network for people in tech, built only from real handshakes — you get in by meeting a member, and every intro comes through someone you both know.
 - **Почему мы (факты, из README и кода app):**
-  1. Попасть можно только через живую встречу: совместное селфи → одноразовый QR на 5 минут.
+  1. Попасть можно только через живую встречу: совместное селфи → одноразовый QR на 10 минут.
   2. Интро — только через общего знакомого; он видит запрос и может поддержать его 🔥.
   3. Открытый код (AGPL-3.0, github.com/nikalimp/1handshake), закрытые данные.
   4. Визитка участника `/@handle` с llms.txt — публичная, индексируется поиском и AI.
@@ -45,7 +45,7 @@
 | URL | Тип | H1 (EN) | Кластер / главный запрос | GEO (№) | Прямой ответ (черновик) | Schema | P |
 |---|---|---|---|---|---|---|---|
 | `/` | Главная | in connects we trust | бренд, закрытые сети | 1, 9, 10, 14, 23 | 1handshake is a members-only network for people in tech. you get in only by meeting a member in person — a joint selfie becomes a one-time invite — and every intro comes through someone you both know. free, open source. | WebSite, Organization, FAQPage | P0 |
-| `/how-it-works/` | Механика | how 1handshake works | как попасть, тёплые интро | 2, 13 | four steps: meet a member, take a selfie together, scan the 5-minute QR, get your card. after that you see people one handshake away and ask for intros through mutual friends. | HowTo, BreadcrumbList | P0 |
+| `/how-it-works/` | Механика | how 1handshake works | как попасть, тёплые интро | 2, 13 | four steps: meet a member, take a selfie together, scan the 10-minute QR, get your card. after that you see people one handshake away and ask for intros through mutual friends. | HowTo, BreadcrumbList | P0 |
 | `/faq/` | FAQ | questions about 1handshake | бренд, приватность | 1–7 | короткие ответы на 15–20 вопросов; первые — «what's the idea?» и «what about privacy?» | FAQPage, BreadcrumbList | P0 |
 | `/open-source/` | Манифест | open code, closed data | open source соцсеть, верифицированный граф | 6, 11, 15, 22 | the code of 1handshake is public under AGPL-3.0; members' data is not. what we store, where, who sees what. | AboutPage, BreadcrumbList | P0 |
 | `/events` | Календарь | events | нетворкинг-ивенты для IT, как попасть в 1handshake | 2, 13 | Upcoming networking events for people in tech, hosted by members of 1handshake. Anyone can come; a selfie with any member there gets you in. | CollectionPage, ItemList (Event), FAQPage, BreadcrumbList | P0 |
@@ -82,7 +82,7 @@
 | 6 | About | 2–3 предложения что это и с какого года; ссылки | README |
 
 ### `/how-it-works/`
-Блоки: 1) прямой ответ; 2) шаги инвайта: селфи вместе → QR на 5 минут с селфи в центре → гость сканирует камерой → рассказывает о себе голосом или текстом → AI собирает визитку → вступление, 🤝 создан; 3) connect: люди через одно рукопожатие, `connect` / `skip`, запрос идёт через общего знакомого, он может поддержать 🔥; 4) feed и стена; 5) graph; 6) визитка `/@handle` + llms.txt, I need / I can (размыт для гостей); 7) видимость: open to hiring / open to network; 8) как попасть без знакомых участников (честно: найти участника; ивенты — v1.1); 9) FAQ 3–5. Скриншоты app — с тестовыми данными.
+Блоки: 1) прямой ответ; 2) шаги инвайта: селфи вместе → QR на 10 минут с селфи в центре → гость сканирует камерой → рассказывает о себе голосом или текстом → AI собирает визитку → вступление, 🤝 создан; 3) connect: люди через одно рукопожатие, `connect` / `skip`, запрос идёт через общего знакомого, он может поддержать 🔥; 4) feed и стена; 5) graph; 6) визитка `/@handle` + llms.txt, I need / I can (размыт для гостей); 7) видимость: open to hiring / open to network; 8) как попасть без знакомых участников (честно: найти участника; ивенты — v1.1); 9) FAQ 3–5. Скриншоты app — с тестовыми данными.
 Источник: `Product/MVP — флоу и экраны.md`, Техархитектура «Статус разработки».
 
 ### `/events`

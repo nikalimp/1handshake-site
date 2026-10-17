@@ -8,7 +8,7 @@ export const roadmap: { id: "live" | "next" | "later"; title: string; lead: stri
     title: "live",
     lead: "Working today at app.1handshake.com.",
     items: [
-      { title: "Invite by a joint selfie", text: "A member takes a selfie with you; it becomes a one-time QR code that lives for 5 minutes." },
+      { title: "Invite by a joint selfie", text: "A member takes a selfie with you; it becomes a one-time QR code that lives for 10 minutes." },
       { title: "Handshakes between members", text: "Two members who meet scan each other's code and get 🤝 right away." },
       { title: "Google sign-in", text: "Members sign in with Google." },
       { title: "AI card from your voice", text: "Tell about yourself by voice or text; AI drafts your card in markdown, and you edit it." },

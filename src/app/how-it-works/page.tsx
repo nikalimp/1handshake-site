@@ -51,7 +51,7 @@ export default function HowItWorks() {
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_auto] [&>*]:min-w-0">
             <div className="flex flex-col gap-4 text-lg leading-7 text-muted-foreground">
               <p>The invite is the heart of 1handshake. Because every new member arrives through a real meeting, every line in the graph stands for two people who have actually seen each other. Bots and fake profiles have no way in.</p>
-              <p>If the 5 minutes run out, the member simply makes a new code with the same selfie. When two people who are already members meet, they scan each other's code and get a handshake 🤝 at once.</p>
+              <p>If the 10 minutes run out, the member simply makes a new code with the same selfie. When two people who are already members meet, they scan each other's code and get a handshake 🤝 at once.</p>
             </div>
             <div className="flex justify-center"><InviteMock /></div>
           </div>

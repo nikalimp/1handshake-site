@@ -130,7 +130,7 @@ export default async function Home() {
                 <div className="flex flex-col gap-4">
                   <Eyebrow className="mb-0">01 · get in</Eyebrow>
                   <H2>meet a member to get in</H2>
-                  <p className="text-lg leading-7 text-muted-foreground">There is no sign-up form and no waitlist. A member takes a selfie with you; it becomes a QR code that works once and lives for 5 minutes. Scan it with your camera, tell about yourself, and AI drafts your card.</p>
+                  <p className="text-lg leading-7 text-muted-foreground">There is no sign-up form and no waitlist. A member takes a selfie with you; it becomes a QR code that works once and lives for 10 minutes. Scan it with your camera, tell about yourself, and AI drafts your card.</p>
                 </div>
                 <div className="flex justify-center"><InviteMock /></div>
               </div>

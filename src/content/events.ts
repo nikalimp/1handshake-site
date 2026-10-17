@@ -10,7 +10,7 @@ export const eventsPage = {
   getIn: [
     { n: "01", title: "pick an event", text: "Choose a date and a city below. If the host asks for registration, sign up on their page — the register link opens it." },
     { n: "02", title: "come and meet people", text: "The host is a member, and members come to these events. Say hi, talk, ask the host who else is in the club." },
-    { n: "03", title: "selfie together", text: "A member takes a selfie with you. Their phone turns it into a one-time QR code that lives for 5 minutes." },
+    { n: "03", title: "selfie together", text: "A member takes a selfie with you. Their phone turns it into a one-time QR code that lives for 10 minutes." },
     { n: "04", title: "you're in", text: "Scan the code with your camera, sign in with Google and make your card. You and that member are connected 🤝." },
   ],
   members:
